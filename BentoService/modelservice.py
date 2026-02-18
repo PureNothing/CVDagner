@@ -3,7 +3,7 @@ from pathlib import Path
 from typing import Annotated, Dict, Any
 from PIL import Image
 from bentoml.validators import ContentType
-from config import CLASSES_MAP
+from config import CLASSES_MAP, FINETUNED_MAP
 
 
 @bentoml.service(resources={'cpu': '2', 'memory': '4Gi'}, traffic={"timeout": 60})
@@ -15,7 +15,7 @@ class YOLOEDetector:
         self.classes = model_info.info.metadata['classes']
         self.conf = model_info.info.metadata['conf_threshold']
 
-        self.model.set_classes(self.classes)
+        #self.model.set_classes(self.classes)
     
     @bentoml.api
     def detect(self, image: Annotated[Path, ContentType("image/*")]) -> Dict[str, Any]:
@@ -32,7 +32,8 @@ class YOLOEDetector:
                     conf = float(box.conf[0].item())
                     xyxy = box.xyxy[0].tolist()
                     boxes.append(xyxy)
-                    labels.append(CLASSES_MAP.get(self.classes[cls_id], self.classes[cls_id]))
+                    #labels.append(CLASSES_MAP.get(self.classes[cls_id], self.classes[cls_id]))
+                    labels.append(FINETUNED_MAP[cls_id])
                     scores.append(conf)
             else:
                 return {

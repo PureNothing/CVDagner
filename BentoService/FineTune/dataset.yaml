@@ -1,0 +1,16 @@
+path: ./yolo_dataset
+train: images/train
+val: images/train
+
+nc: 8
+names:
+  0: pehota
+  1: tank
+  2: bmp
+  3: btr
+  4: bronemashina
+  5: artilleriya
+  6: rszo
+  7: bpla
+
+

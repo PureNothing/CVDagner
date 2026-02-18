@@ -15,9 +15,8 @@ wheels/
 **/.jpg
 **/.csv
 **/.txt
-runs/
-**/.pt
-**/.ts
 *.pt
 *.ts
-yolo_dataset/
+*.csv
+*.jpg
+*.txt 
