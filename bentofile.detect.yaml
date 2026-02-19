@@ -1,0 +1,33 @@
+service: "BentoService.modelservice:Detector"
+name: "war-detector"
+labels:
+  owner: "GontikTechnologies"
+  project: "war-tech-detection"
+  stage: not-ready
+include:
+  - "BentoService/config.py"
+  - "BentoService/modelservice.py"
+exclude:
+  - "BentoService/testnames.py"
+  - "BentoService/bentomodel.py"
+python:
+  packages:
+    - "ultralytics"
+    - "opencv-python-headless"
+    - "bentoml"
+    - "pillow"
+    - "pathlib"
+    - "typing"
+envs: 
+  - name: "USER"
+    value: "admin"
+  - name: "API_KEY"
+    value: "nothing"
+models:
+  - "yoloe_detector:latest"
+  - tag: "yoloe_detector:latest"
+    filter: "label:staging"
+    alias: "war-detector"
+docker:
+  distro: debian
+  python_version: "3.12.12"

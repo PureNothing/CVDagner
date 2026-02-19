@@ -1,21 +1,19 @@
 from ultralytics import YOLOE
 from ultralytics.models.yolo.yoloe import YOLOEPETrainer
 
-# Загружаем предобученную модель
 model = YOLOE("yoloe-26x.yaml")
 model.load("BentoService/yoloe-26x-seg.pt")
 
-# Запускаем дообучение
 model.train(
-    data="dataset.yaml",  # путь к твоему dataset.yaml
-    epochs=50,                          # количество эпох
-    batch=8,                             # размер батча (уменьши до 4, если мало памяти)
-    imgsz=640,                            # размер картинок
-    trainer=YOLOEPETrainer,                # линейное зондирование (быстро)
-    lr0=1e-3,                              # начальная скорость обучения
-    device="cpu",                               # GPU (если есть)
-    project="runs/train",                   # куда сохранять результаты
-    name="yoloe_finetuned"                   # имя эксперимента
+    data="BentoService/FineTune/dataset.yaml",  
+    epochs=1,                         
+    batch=8,                             
+    imgsz=640,                            
+    trainer=YOLOEPETrainer,                
+    lr0=1e-3,                              
+    device="cpu",                               
+    project="BentoService/runs/train",                   
+    name="yoloe_finetuned"                   
 )
 
 print("✅ Обучение завершено!")

@@ -3,17 +3,18 @@ from pathlib import Path
 from typing import Annotated, Dict, Any
 from PIL import Image
 from bentoml.validators import ContentType
-from config import CLASSES_MAP, FINETUNED_MAP
+from BentoService.config import CLASSES_MAP, FINETUNED_MAP
 
 
 @bentoml.service(resources={'cpu': '2', 'memory': '4Gi'}, traffic={"timeout": 60})
-class YOLOEDetector:
-    def __init__(self):
+class Detector:
+    def __init__(self): 
         self.model = bentoml.picklable_model.load_model("yoloe_detector:latest")
 
         model_info = bentoml.models.get("yoloe_detector:latest")
         self.classes = model_info.info.metadata['classes']
         self.conf = model_info.info.metadata['conf_threshold']
+        print(f"Уверенность модели: {self.conf}")
 
         #self.model.set_classes(self.classes)
     

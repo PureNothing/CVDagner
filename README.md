@@ -1,21 +1,54 @@
-По умолчанию Bento Service работает на yoloe-26x-seg.pt
-При использованний базовой модели:
-1. self.model.set_classes(self.classes) ракоментировать эту строчку в modelservice.py
-2. labels.append(CLASSES_MAP.get(self.classes[cls_id], self.classes[cls_id])) - раскоментировать эт строчку в modelservice.py
+1. Выбор и настройка модели детекции:   
+
+    По умолчанию Bento Service работает на yoloe-26x-seg.pt
+    При использованний базовой модели:
+    1. self.model.set_classes(self.classes) ракоментировать эту строчку в modelservice.py
+    2. labels.append(CLASSES_MAP.get(self.classes[cls_id], self.classes[cls_id])) - раскоментировать эт строчку в modelservice.py
+    3. uv run BentoService/bentomodel.py - из корня. Cохранения модели.
 
 
-Fine-Tune:
-1. Загрузить нужные картинки в images/train
-2. Загрузить нужный CSV в yolo_dataset/csv
-3. Заменить классы в conver_csv_to_yolo.py в переменной label_map на ваши.
-4. Заменить классы в dataset.yaml на ваши.
-3. uv run BentoService/FineTune/convert_csv_to_yolo.py
-4. uv run BentoService/FineTune/fine_tune.py
-5. Дождаться конца обучения, зайти в папку runs->yolo_finetuned->weights->best.pt
-6. Заменить модель в BentoService везде на best.pt
-7. Либо раскоментировать просто готовые строки которые сами заберут лучшую модель.
-8. uv run BentoService/bentomodel.py
+    Fine-Tune:
+    1. Запустить сначала обычную модель yoloe-26x-seg.pt чтобы скачался yoloe-26x-seg.pt файл.
+    1. Загрузить нужные картинки в images/train
+    2. Загрузить нужный CSV в yolo_dataset/csv
+    3. Заменить классы в conver_csv_to_yolo.py в переменной label_map на ваши.
+    4. Заменить классы в dataset.yaml на ваши.
+    3. uv run BentoService/FineTune/convert_csv_to_yolo.py - из корня.
+    4. uv run BentoService/FineTune/fine_tune.py - из корня.
+    5. Дождаться конца обучения, зайти в папку runs->yolo_finetuned->weights->best.pt
+    6. Заменить модель в BentoService везде на best.pt
+    7. Либо раскоментировать просто готовые строки которые сами заберут лучшую модель.
+    8. uv run BentoService/bentomodel.py - из корня. Сохранение получившейся модели.
 
-Локальный запуск:
-1. cd BentoService
-2. uv run bentoml modelservice.py:YOLOEDetecot
+    Fine-Tune Kaggle/Collab:
+    1. При слабом компьютере, перенести весь тот же самый код с прошлого пункта на kaggle
+    2. Заранее подгрузить туда Pt и Dataset
+    3. После обучения забрать pt и положить в папку KaggleModel
+    4. Заменить имя конечного файла в bentomodel.py на имя своей модели.
+    5. uv run BentoService/bentomodel.py - из корня. Сохранение получившейся модели.
+
+    После всех проделнанных действий выше (1 из 3 на выбор) Запуско осуществляется одинакого для всех.
+    Сборка образа осуществляется одинаково для всех.
+
+    Локальный запуск:
+    1. uv run bentoml serve BentoService.modelservice:Detector - из корня.
+    2. Переходим по указанному в консоли URL и тестируем.
+
+    Сборка контейнера:
+    1. uv run bentoml build -f bentofile.detect.yaml
+    2. Копируем и консоли tag bento.
+    3. uv run bentoml containerize имя-образа:его-уникальный-тег
+    4. пример: uv run bentoml containerize war-detector:3y6xy7ynvkaphbfj --progress=plain (необязательный флаг в конце)
+    5. зайти в compose.yaml, заменить image 1 service на тот который у вас получился.
+
+Запуск бота:
+    1. cd TgGraphBot
+    1. uv run botmain.py
+    2. Перейти в бота и пользоаться
+
+Тестирование Graphql локально:
+    1. cd TgGraphBot
+    1. Тестирование Graphql запросов локально -> uv run graphapi.py
+    2. Перейти по URL в чате.
+
+

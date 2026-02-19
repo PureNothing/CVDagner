@@ -8,6 +8,7 @@ dependencies = [
     "aiogram>=3.24.0",
     "bentoml>=1.4.35",
     "fastapi[standard]>=0.128.5",
+    "loguru>=0.7.3",
     "pandas>=3.0.0",
     "python-dotenv>=1.2.1",
     "requests>=2.32.5",
