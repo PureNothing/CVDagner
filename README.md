@@ -35,11 +35,10 @@
     2. Переходим по указанному в консоли URL и тестируем.
 
     Сборка контейнера:
-    1. uv run bentoml build -f bentofile.detect.yaml
-    2. Копируем и консоли tag bento.
-    3. uv run bentoml containerize имя-образа:его-уникальный-тег
-    4. пример: uv run bentoml containerize war-detector:3y6xy7ynvkaphbfj --progress=plain (необязательный флаг в конце)
-    5. зайти в compose.yaml, заменить image 1 service на тот который у вас получился.
+    1. uv run bentoml build -f bentofile.detect.yaml.
+    2. uv run bentoml containerize war-detector:lastest --image-tag war-detector:latest --opt progress=plain (необязательный флаг в конце)
+    3. docker build -f dockerfile.fix -t war-detector:fixed
+    4. Все команд нужно выполнить ничего не меняя.
 
 Запуск бота:
     1. cd TgGraphBot

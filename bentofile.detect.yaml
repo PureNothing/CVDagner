@@ -10,10 +10,10 @@ include:
 exclude:
   - "BentoService/testnames.py"
   - "BentoService/bentomodel.py"
+  - "opencv-python==4.13.0.92"
 python:
   packages:
     - "ultralytics"
-    - "opencv-python-headless"
     - "bentoml"
     - "pillow"
     - "pathlib"

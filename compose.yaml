@@ -4,22 +4,23 @@ volumes:
   kafka_data:
   kafka_secrets:
   kafka_config:
+  pgadmin_data:
 
 networks:
   dbnet:
     driver: bridge
 
 services:
-  war-detect:
-    image: war-detector:3y6xy7ynvkaphbfj
-    container_name: war-detect
+  war-detector:
+    image: war-detector:fixed
+    container_name: war-detector
     networks:
       - dbnet
     ports:
       - "0.0.0.0:7777:3000"
     restart: unless-stopped
-    mem_limit: 4G
-    cpus: '2'
+    mem_limit: 1G
+    cpus: '1'
 
   postgres:
     image: postgres:15
@@ -71,7 +72,7 @@ services:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: controller,broker
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://localhost:9093,PLAINTEXT_HOST://0.0.0.0:9094
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST:kafka:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_HOST://kafka:9094
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@localhost:9093
@@ -88,7 +89,7 @@ services:
     image: ghcr.io/kafbat/kafka-ui
     container_name: kafbat
     ports:
-      - "8090:8090"
+      - "8090:8080"
     networks:
       - dbnet
     environment:
@@ -100,6 +101,24 @@ services:
     depends_on:
       - kafka
     restart: unless-stopped
-    mem_limit: 512M
-    cpus: '0.5'
+    mem_limit: 256M
+    cpus: '0.2'
 
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    env_file:
+      - .env
+    environment:
+      - LOG_LEVEL=DEBUG
+    ports:
+      - "0.0.0.0:5050:80"
+    networks:
+      - dbnet
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    restart: unless-stopped
+    mem_limit: 256M
+    cpus: '0.2'
