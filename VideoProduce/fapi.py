@@ -15,6 +15,7 @@ app = FastAPI(lifespan=lifepsawn)
 @app.post("/video_ipload")
 async def upload_video(videos: list[UploadFile]):
     for index, video in enumerate(videos):
+        
         try:
             content = await video.read
             if "." in video.filename:

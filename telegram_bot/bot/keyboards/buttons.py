@@ -9,3 +9,7 @@ home_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="📊 Полный отчет", callback_data="full_report")]
 ])
 
+settings_kb = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(text="🔔 Сменить порог алертов", callback_data="alert_settings")],
+    [InlineKeyboardButton(text="🔙 Выйти", callback_data="exit_settings")]
+])

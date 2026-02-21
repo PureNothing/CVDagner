@@ -1,20 +1,48 @@
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
-from keyboards.buttons import home_kb
+from keyboards.buttons import settings_kb
 from menus.mainmenu import main_menu
+from aiogram.fsm.context import FSMContext
+from config import SETTINGS_KEY
+from handlers.states import Settings
+
+
 
 router = Router()
 
 @router.message(Command("start"))
 async def start(message: Message):
-    await message.answer("""👋 Добро пожаловать!\n
-                         Для ознакомления открой меню ниже и выбери - ❓ Помощь""", reply_markup=main_menu)
+    await message.answer(        
+        "👋 <b>Добро пожаловать!</b>\n\n"
+        "Внизу появились две кнопки:\n"
+        "🏠 <b>Главное меню</b> — открывает список камер и полный отчёт\n"
+        "❓ <b>Помощь</b> — подробная информация о боте\n\n"
+        "Если кнопки вдруг пропадут — просто нажмите /start снова.",
+        parse_mode="HTML",
+        reply_markup=main_menu
+        )
+
+@router.message(Command("molitva"))
+async def moitva(message: Message):
+    await message.answer_photo("https://i.pinimg.com/736x/8a/76/ff/8a76ffbd7b296b637393708d2ffcd63c.jpg", caption="Спасибо 🙏")
+
 
 @router.message(Command("settings"))
-async def settings(message: Message):
+async def settings(message: Message, state: FSMContext):
     await message.answer("🔐 Введите секретный ключ:")
+    await state.set_state(Settings.waiting_key)
 
+@router.message(Settings.waiting_key)
+async def key_check(message: Message, state: FSMContext):
+    print(f"KEY FROM ENV: '{SETTINGS_KEY}'")  # что реально в переменной
+    print(f"KEY FROM USER: '{message.text}'") # что прислал пользователь
+    if message.text == SETTINGS_KEY:
+        await message.answer("✅ Доступ разрешен", reply_markup=settings_kb)
+        await state.set_state(Settings.in_settings)
+    else:
+        await message.answer("❌ Неверно, доступ запрещен")
+        await state.clear()
 
 
 

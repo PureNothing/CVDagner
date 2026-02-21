@@ -1,8 +1,10 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
 from config import GRAPHQL_URL
+from aiogram.fsm.context import FSMContext
 import aiohttp
 from queries import cameras
+from handlers.states import Settings
 
 router = Router()
 
@@ -39,3 +41,17 @@ async def full_report(callback: CallbackQuery):
     await callback.answer()
     await callback.message.answer("Логика отчета за день по всем камерам")
 
+@router.callback_query(Settings.in_settings, F.data == "alert_settings")
+async def alert_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    await callback.message.answer(
+        "🔢 Введите порог срабатывания (целое число):\n"
+        "Например: 5 (если опасностей больше 5)"
+    )
+    await state.set_state(Settings.waiting_threshold)
+
+@router.callback_query(Settings.in_settings, F.data == "exit_settings")
+async def exit_settings(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    await callback.message.answer("🚪 Вы вышли из настроек")
+    await state.clear()
