@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.types import Message, FSInputFile, BufferedInputFile, URLInputFile
-from keyboards.buttons import home_kb
-from handlers.states import Settings
+from bot.keyboards.buttons import home_kb
+from bot.handlers.states import Settings
 from aiogram.fsm.context import FSMContext
 import aiohttp
 

@@ -11,7 +11,7 @@
     1. Запустить сначала обычную модель yoloe-26x-seg.pt чтобы скачался yoloe-26x-seg.pt файл.
     1. Загрузить нужные картинки в images/train
     2. Загрузить нужный CSV в yolo_dataset/csv
-    3. Заменить классы в conver_csv_to_yolo.py в переменной label_map на ваши.
+    3. Заменить классы в convert_csv_to_yolo.py в переменной label_map на ваши.
     4. Заменить классы в dataset.yaml на ваши.
     3. uv run BentoService/FineTune/convert_csv_to_yolo.py - из корня.
     4. uv run BentoService/FineTune/fine_tune.py - из корня.
@@ -42,8 +42,15 @@
 
 Запуск бота:
     1. cd TgGraphBot
-    1. uv run botmain.py
+    1. uv run -m bot.main
     2. Перейти в бота и пользоаться
+
+Запуск микросервиса VideoProduce:
+    1. Запуск фронтенда
+        1. cd VideoProduce
+        2. uv run -m app.main
+    2. Запуск бекенда
+        1ю 
 
 Тестирование Graphql локально:
     1. cd TgGraphBot

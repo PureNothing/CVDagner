@@ -1,7 +1,7 @@
 from aiobotocore.session import get_session
 from contextlib import asynccontextmanager
 from logger import logger
-from config import MINIO
+from app.core.config import MINIO
 
 class S3Client:
     def __init(

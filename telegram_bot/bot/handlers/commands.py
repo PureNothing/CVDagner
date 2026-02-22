@@ -1,11 +1,11 @@
 from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters import Command
-from keyboards.buttons import settings_kb
-from menus.mainmenu import main_menu
+from bot.keyboards.buttons import settings_kb
+from bot.menus.mainmenu import main_menu
 from aiogram.fsm.context import FSMContext
-from config import SETTINGS_KEY
-from handlers.states import Settings
+from bot.core.config import SETTINGS_KEY
+from bot.handlers.states import Settings
 
 
 

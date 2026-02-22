@@ -60,7 +60,8 @@ class BDCORE:
     async def insert_videos(
         video_name, 
         minio_path, 
-        camera_id):
+        camera_id,
+        frames):
         logger.debug("Получены данные о видео, отправляю в БД..")
         try:
             async with async_session() as session:
@@ -68,6 +69,11 @@ class BDCORE:
                     minio_path=minio_path,
                     camera_id=camera_id).returning(Videos.id)
                 v_id = session.execute(stmt)
+
+                for index, frame in enumerate(frames):
+                    
+
+
                 
-                
+
 

@@ -1,10 +1,10 @@
 from aiogram import Router, F
 from aiogram.types import CallbackQuery
-from config import GRAPHQL_URL
+from bot.core.config import GRAPHQL_URL
 from aiogram.fsm.context import FSMContext
 import aiohttp
-from queries import cameras
-from handlers.states import Settings
+from bot.queries import cameras
+from bot.handlers.states import Settings
 
 router = Router()
 

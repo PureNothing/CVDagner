@@ -1,12 +1,12 @@
-from handlers import commands
-from handlers import callbacks
-from handlers import messages
-from config import BOT_TOKEN
+from bot.handlers import commands
+from bot.handlers import callbacks
+from bot.handlers import messages
+from bot.core.config import BOT_TOKEN
 from aiogram import Dispatcher, Bot
 from aiogram.exceptions import TelegramForbiddenError
-from menus.buttonmenu import setup_menu
+from bot.menus.buttonmenu import setup_menu
 import asyncio
-from logger import logger
+from bot.core.logger import logger
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
