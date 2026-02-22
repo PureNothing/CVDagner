@@ -18,6 +18,8 @@ class BD:
     DB_NAME = os.getenv("POSTGRES_DB")
     DB_URL = f"postgresql+asyncpg://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
 
+KAFKA_URL = "localhost:9094"
+
 def check_env():
     logger.debug("Начинаю проверку необходимых переменных..")
         

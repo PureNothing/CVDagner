@@ -13,7 +13,7 @@ def lifepsawn():
 app = FastAPI(lifespan=lifepsawn)
 
 @app.post("/video_ipload")
-async def upload_video(videos: list[UploadFile]):
+async def upload_video(videos: list[UploadFile], camera_id):
     for index, video in enumerate(videos):
         
         try:

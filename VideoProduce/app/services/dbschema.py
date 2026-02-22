@@ -44,3 +44,30 @@ class Frames(Base):
     camera_id: Mapped[int] 
 
     video: Mapped["Videos"] = relationship(back_populates="frames", foreign_keys=[video_id])
+
+
+class BDCORE:
+    @staticmethod
+    async def create_tables():
+        async with engine.begin() as conn:
+            logger.debug("Удаляю все Таблицы..")
+            await conn.run_sync(Base.metadata.drop_all)
+            logger.debug("Создаю новые..")
+            await conn.run_sync(Base.metadata.create_all)
+            logger.debug("Таблицы успено созданы!")
+
+    @staticmethod
+    async def insert_videos(
+        video_name, 
+        minio_path, 
+        camera_id):
+        logger.debug("Получены данные о видео, отправляю в БД..")
+        try:
+            async with async_session() as session:
+                stmt = insert(Videos).values(
+                    minio_path=minio_path,
+                    camera_id=camera_id).returning(Videos.id)
+                v_id = session.execute(stmt)
+                
+                
+
