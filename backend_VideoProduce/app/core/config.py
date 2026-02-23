@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
-from logger import logger
+from app.logger import logger
+import sys
 load_dotenv()
 
 class MINIO:
@@ -21,5 +22,24 @@ class BD:
 KAFKA_URL = "localhost:9094"
 
 def check_env():
+    logger.debug("="*20)
+    logger.debug("ЗАПУСК")
     logger.debug("Начинаю проверку необходимых переменных..")
-        
+    must_have = [
+            "MINIO_ROOT_USER",
+            "MINIO_ROOT_PASSWORD",
+            "MINIO_ENDPOINT_URL",
+            "MINIO_BUCKET_NAME_VIDEOS",
+            "MINIO_BUCKET_NAME_FRAMES",
+            "POSTGRES_HOST",
+            "POSTGRES_PORT",
+            "POSTGRES_USER",
+            "POSTGRES_PASSWORD",
+            "POSTGRES_DB"
+        ]
+    for env in must_have:
+        try:
+            os.environ[env]
+        except Exception as e:
+            logger.critical(f"Переменная {env} отсутствует, не могу начать работу. {e}")
+            sys.exit(1)

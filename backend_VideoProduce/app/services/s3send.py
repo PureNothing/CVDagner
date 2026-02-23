@@ -1,10 +1,10 @@
 from aiobotocore.session import get_session
 from contextlib import asynccontextmanager
-from logger import logger
+from app.logger import logger
 from app.core.config import MINIO
 
 class S3Client:
-    def __init(
+    def __init__(
             self,
             access_key: str,
             secret_key: str,
@@ -26,18 +26,18 @@ class S3Client:
 
     async def bucket_check(self):
         async with self.get_client() as client:
-            logger.debug("Проверяю есть ли Bucket..")
+            logger.debug(f"Проверяю есть ли Bucket = {self.bucket_name}..")
             try:
                 await client.head_bucket(Bucket=self.bucket_name)
-                logger.debug("Bucket уже есть, отлично!")
+                logger.debug(f"Bucket = {self.bucket_name} уже есть, отлично!")
             except:
                 try:
-                    logger.debug("Bucket не оказалось, создаю..")
+                    logger.debug(f"Bucket = {self.bucket_name} не оказалось, создаю..")
                     await client.create_bucket(Bucket=self.bucket_name)
                     await client.head_bucket(Bucket=self.bucket_name)
                     logger.debug(f"Bucket с именем {self.bucket_name} успешно создан!")
                 except Exception as e:
-                    logger.error("Не удалось создать Bucket!")
+                    logger.error(f"Не удалось создать {self.bucket_name} Bucket!")
                     raise
 
     async def upload_file(
@@ -47,13 +47,13 @@ class S3Client:
     ):
         async with self.get_client() as client:
             try:
-                logger.debug("Получил данные пробую загрузить")
+                logger.debug(f"Получил данные пробую загрузить в Bucket = {self.bucket_name}")
                 await client.put_object(
                     Bucket = self.bucket_name,
                     Body = file_data,
                     Key = file_name
                 )
-                logger.debug("Файл успешно загружен в S3")
+                logger.debug(f"Файл успешно загружен в S3, Bucket = {self.bucket_name}")
             except Exception as e:
                 logger.error("Не удалось загрузить файл в S3")
                 raise

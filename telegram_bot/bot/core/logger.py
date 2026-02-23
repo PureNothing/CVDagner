@@ -14,14 +14,14 @@ logger.add(
     rotation = "1 day",
     retention = 3,
     compression = zip,
-    format = "{time} {level} {message} {function}"
+    format = "{time} {level} {message} {function} {file}:{line}"
 )
 
 logger.add(
     sys.stderr,
     level = "DEBUG",
     colorize = True,
-    format = "<red>{time:HH:mm:ss}</red> | <level>{level: <8}</level> | <cyan>{message}</cyan> | {extra}"
+    format = "<red>{time:HH:mm:ss}</red> | <level>{level: <8}</level> | <cyan>{message}</cyan> | {extra} | <yellow>{file}:{line}</yellow>"
 )
 
 

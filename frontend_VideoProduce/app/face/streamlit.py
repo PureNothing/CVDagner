@@ -36,7 +36,7 @@ if "camera" in st.session_state:
 
             file_to_send = []
             for file in files:
-                file_to_send.append(("file", file))
+                file_to_send.append(("videos", file))
             
             url = f"{config.FAST_API_URL}/{st.session_state.camera}"
             response = requests.post(url=url, files=file_to_send)
