@@ -5,7 +5,7 @@ from app.logger import logger
 from app.services.dbschema import DBCORE
 from app.services.kafkaproduce import kafka_send
 
-async def exctract_and_load_frames(content: bytes, base_name: str, video_id: str, camera_id: str):
+async def exctract_and_load_frames(content: bytes, base_name: str, video_id: str, camera_id: int):
     buffer = io.BytesIO(content)
     container = av.open(buffer, format=None)
 
@@ -30,7 +30,7 @@ async def exctract_and_load_frames(content: bytes, base_name: str, video_id: str
                                            )
                 try:
                     logger.debug("Отправляю путь фрейма в топик..")
-                    await kafka_send(minio_path = frame_name)
+                    await kafka_send(minio_path = frame_name, camera_id=camera_id)
                     logger.debug("Успшео отправлено в топик!")
                 except Exception as e:
                     logger.error(f"Ошибка отправки в топик. {e}")

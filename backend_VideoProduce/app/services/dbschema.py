@@ -24,6 +24,7 @@ class Base(DeclarativeBase):
 
 class Videos(Base):
     __tablename__ ="videos"
+    __table_args__ = {"schema": "VideoProducerService"}
 
     id: Mapped[intpk]
     uploaded_at: Mapped[s_time]
@@ -34,10 +35,11 @@ class Videos(Base):
 
 class Frames(Base):
     __tablename__ = "frames"
+    __table_args__ = {"schema": "VideoProducerService"}
 
     id: Mapped[intpk]
     created_at: Mapped[s_time]
-    video_id: Mapped[int] = mapped_column(ForeignKey("videos.id", ondelete='CASCADE'))
+    video_id: Mapped[int] = mapped_column(ForeignKey("VideoProducerService.videos.id", ondelete='CASCADE'))
     minio_path: Mapped[str]
     camera_id: Mapped[int]
     status: Mapped[str] = mapped_column(server_default="not_processed")
@@ -49,6 +51,8 @@ class DBCORE:
     @staticmethod
     async def create_tables():
         async with engine.begin() as conn:
+            logger.debug("Создаю схему VideoProducerService если её нет..")
+            await conn.execute(text("CREATE SCHEMA IF NOT EXISTS VideoProducerService"))
             logger.debug("Удаляю все Таблицы..")
             await conn.run_sync(Base.metadata.drop_all)
             logger.debug("Создаю новые..")

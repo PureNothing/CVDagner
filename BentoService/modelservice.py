@@ -1,5 +1,6 @@
 import bentoml
 from pathlib import Path
+import io
 from typing import Annotated, Dict, Any
 from PIL import Image
 from bentoml.validators import ContentType
@@ -19,9 +20,9 @@ class Detector:
         #self.model.set_classes(self.classes)
     
     @bentoml.api
-    def detect(self, image: Annotated[Path, ContentType("image/*")]) -> Dict[str, Any]:
+    def detect(self, image: Annotated[bytes, ContentType("image/*")]) -> Dict[str, Any]:
         try:
-            pil_image = Image.open(image).convert('RGB')
+            pil_image = Image.open(io.BytesIO(image)).convert('RGB')
             results = self.model(pil_image, conf=self.conf)
             boxes = []
             labels = []
@@ -39,7 +40,6 @@ class Detector:
             else:
                 return {
                     "success": True,
-                    "count": 0,
                     "boxes": boxes,
                     "labels": labels,
                     "scores": scores,
@@ -48,7 +48,6 @@ class Detector:
             
             return {
                 "success": True,
-                "count": len(boxes),
                 "boxes": boxes,
                 "labels": labels,
                 "scores": scores,
@@ -57,8 +56,4 @@ class Detector:
         
         
         except Exception as e:
-            return {
-                "success": False,
-                "message": str(e)
-            }
-        
+            raise

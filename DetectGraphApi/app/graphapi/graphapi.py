@@ -1,7 +1,15 @@
 import strawberry
-from fastapi import FastAPI
+from fastapi import APIRouter
 from strawberry.fastapi import GraphQLRouter
 import uvicorn
+from app.core.kafkabroker import broker
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespawn():
+    await broker.start()
+    yield
+    await broker.stop()
 
 
 
@@ -41,8 +49,5 @@ class Query:
 
 
 schema = strawberry.Schema(query=Query)
-app = FastAPI()
-app.include_router(GraphQLRouter(schema=schema, graphql_ide=True), prefix="/graphql")
-
-if __name__ == "__main__":
-    uvicorn.run("graphapi:app", reload=True)
+router = APIRouter(lifespan=lifespawn)
+router.include_router(GraphQLRouter(schema=schema, graphql_ide=True), prefix="/graphql")

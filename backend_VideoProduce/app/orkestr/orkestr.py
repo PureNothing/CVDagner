@@ -23,7 +23,7 @@ async def orkestr_func(file_name, content, camera_id):
     try:
         logger.debug("Отпарвляю информацию о видео в БД")
         video_id = await DBCORE.insert_videos(camera_id=camera_id, minio_path=video_iniq_name)
-        logger.debug("Видео успено загружено в БД")
+        logger.debug("Видео успешно загружено в БД")
     except Exception as e:
         logger.error(f"Не удалось загрузить данные о видео в БД. {e}")
         raise
