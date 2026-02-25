@@ -14,10 +14,10 @@ class Detected_frames(Base):
     id: Mapped[intpk]
     camera_id: Mapped[int]
     not_detected_minio_path: Mapped[str]
-    detected_minio_path: Mapped[str]
-    created_at: Mapped[s_time]
+    detected_minio_path: Mapped[str | None]
+    processed_at: Mapped[s_time]
 
-    detected_objects: list["Detected_objects"] = relationship(back_populates="frame")
+    detected_objects: Mapped[list["Detected_objects"]] = relationship(back_populates="frame")
 
 
 class Detected_objects(Base):
@@ -28,7 +28,7 @@ class Detected_objects(Base):
     frame_id: Mapped[int] = mapped_column(ForeignKey("DetectionService.Detected_frames.id", ondelete='CASCADE'))
     camera_id: Mapped[int]
     label: Mapped[str]
-    created_at: Mapped[s_time]
+    detected_at: Mapped[s_time]
     score: Mapped[float]
     box_x1: Mapped[int]
     box_y1: Mapped[int]

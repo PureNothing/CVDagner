@@ -1,16 +1,38 @@
 import strawberry
 from fastapi import APIRouter
 from strawberry.fastapi import GraphQLRouter
-import uvicorn
 from app.core.kafkabroker import broker
 from contextlib import asynccontextmanager
+from app.logger import logger
+from app.services.dbfuncs import DBFuncs
+from app.services.s3loadupload import s3_client_download_frames, s3_client_upload_to_detected
 
 @asynccontextmanager
-async def lifespawn():
-    await broker.start()
+async def lifespawn(router):
+    try:
+        logger.debug("Проверяю Bucket, создаю таблицы и схемы в БД..")
+        await DBFuncs.create_tables()
+        await s3_client_upload_to_detected.bucket_check()
+        await s3_client_download_frames.bucket_check()
+        logger.debug("БД и S3 успешно инициализированы и готовы к работе.")
+    except Exception as e:
+        logger.error(f"Ошибка иницилазиции БД или S3")
+        raise
+    try:
+        logger.debug("Открываю TCP соединение с Kafka...")
+        await broker.start()
+        logger.debug("TCP соединение с Kafka успешно открыто.")
+    except Exception as e:
+        logger.error(f"Не удалось открыть TCP соединение с Kafka. {e}")
+        raise
     yield
-    await broker.stop()
-
+    try:
+        logger.debug("Закрываю соединения Kafka, завершаю работу...")
+        await broker.stop()
+        logger.debug("Соединения закрыты работа заверешена успешно.")
+        logger.debug("="*20)
+    except Exception as e:
+        logger.error(f"Не удалось закрыть соединение и завершить работу. {e}")
 
 
 @strawberry.type

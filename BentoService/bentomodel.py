@@ -4,7 +4,8 @@ from config import CLASSES, confidence_threshold
 
 #model = YOLOE("yoloe-26x-seg.pt")
 #model = YOLO("BentoService/runs/train/yolo_finetuned/weights/best.pt")
-model = YOLO("BentoService/FineTune/KaggleModel/map761e36.pt")
+#model = YOLO("BentoService/FineTune/KaggleModel/map761e36.pt")
+model = YOLO("BentoService/FineTune/KaggleModel/map823e50.onnx")
 
 saved_model = bentoml.picklable_model.save_model(
     "yoloe_detector",

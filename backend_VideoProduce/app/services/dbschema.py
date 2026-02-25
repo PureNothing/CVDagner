@@ -52,12 +52,13 @@ class DBCORE:
     async def create_tables():
         async with engine.begin() as conn:
             logger.debug("Создаю схему VideoProducerService если её нет..")
-            await conn.execute(text("CREATE SCHEMA IF NOT EXISTS VideoProducerService"))
+            await conn.execute(text('CREATE SCHEMA IF NOT EXISTS "VideoProducerService"'))
+            logger.debug("Схема создана.")
             logger.debug("Удаляю все Таблицы..")
             await conn.run_sync(Base.metadata.drop_all)
             logger.debug("Создаю новые..")
             await conn.run_sync(Base.metadata.create_all)
-            logger.debug("Таблицы успено созданы!")
+            logger.debug("Таблицы (Videos), (Frames) успено созданы, БД готова к работе!")
 
     @staticmethod
     async def insert_videos(

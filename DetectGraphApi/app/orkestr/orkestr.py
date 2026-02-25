@@ -4,8 +4,8 @@ from app.services.dbfuncs import DBFuncs
 from app.drawers.drawer import draw_box
 from app.services.kafkaproducevideoserv import publish_video_produce_service
 from app.services.kafkaproducealertserv import publish_alert_service
-import json
 import aiohttp
+import base64
 
 
 
@@ -13,15 +13,22 @@ async def orkerstr_func(minio_path: str, camera_id: int):
 
     orig_frame = await s3_client_download_frames.download_file(
         minio_path=minio_path)
-
-    json_response = await aiohttp.request(
-        url=DETECOR_URL,
-        data=orig_frame)
+    b64_frame = base64.b64encode(orig_frame)
+    b64_frame = b64_frame.decode("utf-8")
     
-    dict_response = json.loads(json_response)
+    file_type = "jpeg"
+    if "." in minio_path:
+        file_type = minio_path.split(".")[-1]
 
-    if len(dict_response["boxes"]) == len(dict_response["labels"]) and len(dict_response["boxes"]) == len(dict_response["scores"]):
+    async with aiohttp.ClientSession() as session:
+        async with session.post(DETECOR_URL, json = {"image": b64_frame}) as response:
+            response.raise_for_status()
+            dict_response = await response.json()
+    
+    uniq_name = None
         
+    if len(dict_response["boxes"]) > 0:
+    
         detected_img = draw_box(
             orig_frame,
             dict_response["boxes"],
@@ -31,7 +38,7 @@ async def orkerstr_func(minio_path: str, camera_id: int):
         if "." in minio_path:
             end = minio_path.split(".")[-1]
             start = minio_path.split(".")[0]
-            uniq_name = str(start) + "_detected" + str(end)
+            uniq_name = str(start) + "_detected." + str(end)
         else:
             uniq_name = str(minio_path) + "_detected"
 
@@ -40,10 +47,12 @@ async def orkerstr_func(minio_path: str, camera_id: int):
             file_name=uniq_name
         )
 
-        frame_id = await DBFuncs.insert_detected_frame(camera_id=camera_id,
-                                                not_detected_minio_path=minio_path,
-                                                detected_minio_path=uniq_name)
-        
+    frame_id = await DBFuncs.insert_detected_frame(camera_id=camera_id,
+                                            not_detected_minio_path=minio_path,
+                                            detected_minio_path=uniq_name)
+    
+    if len(dict_response["boxes"]) > 0:
+
         for box, label, score in zip(dict_response["boxes"], dict_response["labels"], dict_response["scores"]):
             box_x1, box_y1, box_x2, box_y2 = box
             await DBFuncs.insert_detected_object(
@@ -56,6 +65,7 @@ async def orkerstr_func(minio_path: str, camera_id: int):
                 box_x2 = box_x2,
                 box_y2 = box_y2
             )
-        
-        await publish_video_produce_service(minio_path=minio_path)
-        await publish_alert_service(detection_results = json_response)
+
+        await publish_alert_service(detection_results = dict_response)
+    
+    await publish_video_produce_service(minio_path=minio_path)

@@ -32,7 +32,7 @@ class S3Client:
             try:
                 await client.head_bucket(Bucket=self.bucket_name)
                 logger.debug(f"Bucket = {self.bucket_name} уже есть, отлично!")
-            except:
+            except Exception as e:
                 try:
                     logger.debug(f"Bucker = {self.bucket_name} не оказалось, создаю..")
                     await client.create_bucket(Bucket=self.bucket_name)
@@ -72,7 +72,7 @@ class S3Client:
                     Key = minio_path
                 )
                 logger.debug(f"Файл успешно скачан из Bucket = {self.bucket_name}")
-                return response['Body'].read()
+                return await response['Body'].read()
             except Exception as e:
                 logger.debug(f"Не удалось скачать файл из Bucket = {self.bucket_name}")
                 raise

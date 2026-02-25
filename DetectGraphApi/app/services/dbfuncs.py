@@ -11,14 +11,14 @@ class DBFuncs:
             logger.debug("Создаю схему, удаляю таблицы, создаю новые..")
             try:
                 logger.debug("Создаю схему DetectionService если её нет..")
-                await conn.execute(text("CREATE SCHEMA IF NOT EXISTS DetectionService"))
-                logger.debug("Схем успешно создана.")
+                await conn.execute(text('CREATE SCHEMA IF NOT EXISTS "DetectionService"'))
+                logger.debug("Схема успешно создана.")
                 logger.debug("Удаляю таблицы..")
                 await conn.run_sync(Base.metadata.drop_all)
                 logger.debug("Таблицы удалены успешно.")
                 logger.debug("Создаю новые таблицы..")
                 await conn.run_sync(Base.metadata.create_all)
-                logger.debug("Таблицы успешно созданы БД готов к работе.")
+                logger.debug("Таблицы (Detected_frames), (Deteted_objects) успешно созданы БД готов к работе.")
             except Exception as e:
                 logger.error(f"Не удалось инициализировать БД готовую к работе. {e}")
                 raise
@@ -48,6 +48,7 @@ class DBFuncs:
                 return frame_id
         except Exception as e:
             logger.error(f"Не удалось загрузить фрейм в БД. {e}")
+            raise
     
     @staticmethod
     async def insert_detected_object(
@@ -81,6 +82,7 @@ class DBFuncs:
                 logger.debug("Данные о детектированном объекте успешно загружены в БД.")
         except Exception as e:
             logger.error(f"Не удалось загрузить данные о детектированном объекте в БД {e}")
+            raise
 
 
 

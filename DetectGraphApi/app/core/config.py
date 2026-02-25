@@ -26,7 +26,7 @@ def check_env():
         try:
             os.environ[env]
         except Exception as e:
-            logger.crit(f"Перемення {env} не найдена, не могу работать. {e}")
+            logger.critical(f"Перемення {env} не найдена, не могу работать. {e}")
             sys.exit(1)
 
 
@@ -47,7 +47,7 @@ class DB:
     DB_URL = f"postgresql+asyncpg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 KAFKA_URL = "localhost:9092"
-DETECOR_URL = "localhost:7777/detect"
+DETECOR_URL = "http://localhost:7777/detect"
 
 
 

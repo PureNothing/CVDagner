@@ -3,6 +3,8 @@ import os
 from app.graphapi.graphapi import router
 import uvicorn
 from fastapi import FastAPI
+import app.services.kafkaconsume
+
 
 if not os.getenv("ENV_CHECKED"):
     check_env()
@@ -14,4 +16,4 @@ app = FastAPI()
 app.include_router(router=router)
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True)
+    uvicorn.run("app.main:app", port=8001, reload=True)

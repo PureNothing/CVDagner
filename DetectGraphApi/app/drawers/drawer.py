@@ -1,7 +1,7 @@
-from PIL import ImageDraw, Image, ImageFont
+from PIL import ImageDraw, Image
 import io
 
-def draw_box(image: bytes, boxes, labels, scores) -> Image:
+def draw_box(image: bytes, boxes, labels, scores) -> bytes:
     pil_image = Image.open(io.BytesIO(image))
     draw = ImageDraw.Draw(pil_image)
 
@@ -9,5 +9,8 @@ def draw_box(image: bytes, boxes, labels, scores) -> Image:
         x1, y1, x2, y2 = box
         draw.rectangle(xy=[x1, y1, x2, y2], outline="red", width=2)
         draw.text(xy=(x1, y1), text=f"{label} {score:.2f}", fill="red")
+    
+    bytes_image = io.BytesIO()
+    pil_image.save(bytes_image, format="JPEG")
 
-    return pil_image
+    return bytes_image.getvalue()
