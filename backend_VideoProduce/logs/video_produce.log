@@ -4299,3 +4299,339 @@ CREATE TABLE "VideoProducerService".videos (
 2026-02-25T18:16:18.220675+0300 DEBUG Видео и все его фреймы успешно обработаны (S3, БД)! upload_video post.py:43
 2026-02-25T18:20:13.706909+0300 DEBUG Закрываю соединение S3, KAFKA, БД.. lifepsawn post.py:27
 2026-02-25T18:20:13.707928+0300 DEBUG ==================== lifepsawn post.py:29
+2026-02-26T02:04:11.478342+0300 DEBUG ==================== check_env config.py:25
+2026-02-26T02:04:11.774755+0300 DEBUG ЗАПУСК check_env config.py:26
+2026-02-26T02:04:11.775740+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:27
+2026-02-26T02:04:15.194556+0300 DEBUG Проверяю БД и S3 перед запуском lifepsawn post.py:13
+2026-02-26T02:04:15.464343+0300 DEBUG Создаю схему VideoProducerService если её нет.. create_tables dbschema.py:54
+2026-02-26T02:04:15.464343+0300 DEBUG Схема создана. create_tables dbschema.py:56
+2026-02-26T02:04:15.464343+0300 DEBUG Удаляю все Таблицы.. create_tables dbschema.py:57
+2026-02-26T02:04:15.480189+0300 DEBUG Создаю новые.. create_tables dbschema.py:59
+2026-02-26T02:04:17.626097+0300 DEBUG Таблицы (Videos), (Frames) успено созданы, БД готова к работе! create_tables dbschema.py:61
+2026-02-26T02:04:52.469966+0300 DEBUG Проверяю есть ли Bucket = videos.. bucket_check s3send.py:29
+2026-02-26T02:04:52.523971+0300 DEBUG Bucket = videos не оказалось, создаю.. bucket_check s3send.py:35
+2026-02-26T02:04:53.087039+0300 DEBUG Bucket с именем videos успешно создан! bucket_check s3send.py:38
+2026-02-26T02:04:53.232409+0300 DEBUG Проверяю есть ли Bucket = frames.. bucket_check s3send.py:29
+2026-02-26T02:04:53.259880+0300 DEBUG Bucket = frames уже есть, отлично! bucket_check s3send.py:32
+2026-02-26T02:04:53.261847+0300 DEBUG Открываю соединие TCP c Kafka.. lifepsawn post.py:22
+2026-02-26T03:12:02.486932+0300 DEBUG Закрываю соединение S3, KAFKA, БД.. lifepsawn post.py:27
+2026-02-26T03:12:02.509475+0300 DEBUG ==================== lifepsawn post.py:29
+2026-02-26T03:13:09.666244+0300 DEBUG ==================== check_env config.py:25
+2026-02-26T03:13:09.669888+0300 DEBUG ЗАПУСК check_env config.py:26
+2026-02-26T03:13:09.669888+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:27
+2026-02-26T03:13:09.711832+0300 DEBUG Проверяю БД и S3 перед запуском lifepsawn post.py:13
+2026-02-26T03:13:09.814890+0300 DEBUG Создаю схему VideoProducerService если её нет.. create_tables dbschema.py:54
+2026-02-26T03:13:09.908490+0300 DEBUG Схема создана. create_tables dbschema.py:56
+2026-02-26T03:13:09.908490+0300 DEBUG Удаляю все Таблицы.. create_tables dbschema.py:57
+2026-02-26T03:13:10.887584+0300 DEBUG Создаю новые.. create_tables dbschema.py:59
+2026-02-26T03:13:13.509670+0300 DEBUG Таблицы (Videos), (Frames) успено созданы, БД готова к работе! create_tables dbschema.py:61
+2026-02-26T03:13:13.983158+0300 DEBUG Проверяю есть ли Bucket = videos.. bucket_check s3send.py:29
+2026-02-26T03:13:14.017421+0300 DEBUG Bucket = videos уже есть, отлично! bucket_check s3send.py:32
+2026-02-26T03:13:14.312397+0300 DEBUG Проверяю есть ли Bucket = frames.. bucket_check s3send.py:29
+2026-02-26T03:13:14.353472+0300 DEBUG Bucket = frames уже есть, отлично! bucket_check s3send.py:32
+2026-02-26T03:13:14.357052+0300 DEBUG Открываю соединие TCP c Kafka.. lifepsawn post.py:22
+2026-02-26T03:14:01.510403+0300 DEBUG Получено 1 видео. upload_video post.py:36
+2026-02-26T03:14:01.510403+0300 DEBUG Пробую обработать 1/1.. upload_video post.py:39
+2026-02-26T03:14:01.515389+0300 DEBUG Назначаю имена файлам.. orkestr_func orkestr.py:9
+2026-02-26T03:14:01.515389+0300 DEBUG Отправляю видео в S3 orkestr_func orkestr.py:17
+2026-02-26T03:14:01.515389+0300 DEBUG Получил данные пробую загрузить в Bucket = videos upload_file s3send.py:50
+2026-02-26T03:14:03.228625+0300 DEBUG Файл успешно загружен в S3, Bucket = videos upload_file s3send.py:56
+2026-02-26T03:14:03.229243+0300 DEBUG Видео успешно отправлено в S3 orkestr_func orkestr.py:19
+2026-02-26T03:14:03.229243+0300 DEBUG Отпарвляю информацию о видео в БД orkestr_func orkestr.py:24
+2026-02-26T03:14:03.229243+0300 DEBUG Получены данные о видео, отправляю в БД.. insert_videos dbschema.py:68
+2026-02-26T03:14:03.542114+0300 DEBUG Видео успешно загружено возвращаю id insert_videos dbschema.py:78
+2026-02-26T03:14:03.542114+0300 DEBUG Видео успешно загружено в БД orkestr_func orkestr.py:26
+2026-02-26T03:14:03.542114+0300 DEBUG Отправляю фреймы видео в S3 и БД.. orkestr_func orkestr.py:31
+2026-02-26T03:14:04.291784+0300 DEBUG Пробую нарезать фреймы и загрузить в S3.. exctract_and_load_frames framer.py:14
+2026-02-26T03:14:05.773721+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:07.027068+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:07.029428+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:07.310189+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:07.310761+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:07.310761+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:09.957510+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:09.958017+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:10.010789+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:10.592066+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:10.594929+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:10.878036+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:10.878036+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:10.878036+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:10.885869+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:10.885869+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:10.945597+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:11.641997+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:11.641997+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:11.843151+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:11.843151+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:11.843151+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:11.848607+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:11.849141+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:11.909487+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:12.217779+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:12.219782+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:12.476511+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:12.476910+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:12.476910+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:12.480372+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:12.480879+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:12.530256+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:13.054328+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:13.056880+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:13.174716+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:13.174716+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:13.174716+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:13.182546+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:13.182546+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:13.233792+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:13.654707+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:13.656256+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:13.796207+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:13.796207+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:13.796207+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:13.805014+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:13.805535+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:13.858476+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:14.338513+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:14.338513+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:14.724739+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:14.724739+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:14.724739+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:14.733734+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:14.733734+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:14.787957+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:15.243691+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:15.246307+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:15.469070+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:15.470070+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:15.470070+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:15.472793+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:15.473300+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:15.527602+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:15.986102+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:15.992587+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:16.137514+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:16.137514+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:16.138515+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:16.141543+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:16.141543+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:16.194166+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:16.612440+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:16.612973+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:16.744145+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:16.744145+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:16.744145+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:16.750558+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:16.751109+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:16.803910+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:17.602960+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:17.602960+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:17.862056+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:17.862665+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:17.862665+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:17.866034+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:17.866553+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:17.978016+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:18.720300+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:18.721301+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:18.934846+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:18.934846+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:18.935374+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:18.938171+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:18.938914+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:18.992145+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:19.781483+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:19.783102+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:19.949346+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:19.949909+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:19.949909+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:19.952985+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:19.953517+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:20.010563+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:20.590498+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:20.592519+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:20.734619+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:20.734619+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:20.734619+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:20.740125+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:20.740640+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:20.786679+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:21.379821+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:21.379821+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:21.726434+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:21.726969+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:21.727534+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:21.730472+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:21.730472+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:21.787517+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:22.129331+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:22.129331+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:22.369079+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:22.369079+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:22.369079+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:22.373858+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:22.373858+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:22.417077+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:23.038702+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:23.040940+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:23.172754+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:23.172754+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:23.172754+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:23.175417+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:23.175417+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:23.232918+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:23.766475+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:23.766475+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:23.954484+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:23.954484+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:23.954484+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:23.961344+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:23.961850+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:24.014773+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:24.367725+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:24.370431+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:24.568672+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:24.568672+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:24.568672+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:24.574798+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:24.575337+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:24.627413+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:25.055085+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:25.057283+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:25.262337+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:25.262337+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:25.262337+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:25.266096+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:25.266613+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:25.321447+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:25.839878+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:25.842855+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:25.999266+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:25.999868+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:25.999868+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:26.003244+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:26.003749+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:26.052898+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:26.823114+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:26.833635+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:27.143784+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:27.143784+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:27.143784+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:27.150253+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:27.150253+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:27.202608+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:28.074058+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:28.076421+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:28.733614+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:28.733614+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:28.738302+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:28.741737+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:28.742268+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:28.785254+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:29.459059+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:29.461519+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:29.751202+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:29.751846+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:29.751846+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:29.753645+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:29.755660+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:29.802496+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:30.369324+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:30.369324+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:30.642769+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:30.643784+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:30.643784+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:30.646717+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:30.647305+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:30.704875+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:31.061636+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:31.063677+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:31.251506+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:31.251506+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:31.251506+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:31.261108+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:31.261694+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:31.313499+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:31.863667+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:31.865718+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:32.143346+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:32.144346+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:32.144346+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:32.147353+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:32.147860+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:32.197241+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:32.938801+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:32.941324+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:33.283664+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:33.283664+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:33.283664+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:33.287133+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:33.287133+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:33.340607+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:33.882679+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:33.885080+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:34.035391+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:34.035391+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:34.035391+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:34.043003+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:34.043561+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:34.097961+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:34.835775+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:34.835775+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:35.148863+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:35.148863+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:35.157752+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:35.160763+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:35.161356+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:35.211478+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:35.802437+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:35.802437+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:36.032274+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:36.040350+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:36.040350+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:36.044037+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:36.044548+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:36.099352+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:36.650397+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:36.652550+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:36.806633+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:36.807626+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:36.807626+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:36.810600+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:36.811107+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:36.861707+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:37.356769+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:37.358433+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:37.690434+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:37.690434+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:37.690434+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:37.701131+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:37.701656+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:37.756310+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:38.274891+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:38.276884+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:38.441695+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:38.442730+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:38.442730+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:38.445702+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:38.446304+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:38.497337+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:39.254813+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:39.259898+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:39.514186+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:39.515050+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:39.515050+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:39.518148+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:39.518859+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:39.569970+0300 DEBUG Получил данные пробую загрузить в Bucket = frames upload_file s3send.py:50
+2026-02-26T03:14:40.216349+0300 DEBUG Файл успешно загружен в S3, Bucket = frames upload_file s3send.py:56
+2026-02-26T03:14:40.218347+0300 DEBUG Получена ифна о фрейме, гружу в БД.. insert_frames dbschema.py:92
+2026-02-26T03:14:40.362247+0300 DEBUG Инфа о фрейме успешно загружена в БД! insert_frames dbschema.py:102
+2026-02-26T03:14:40.363165+0300 DEBUG Отправляю путь фрейма в топик.. exctract_and_load_frames framer.py:32
+2026-02-26T03:14:40.363165+0300 DEBUG Получено сообщение отправляю в топик Kafka = (ready_to_detect).. kafka_send kafkaproduce.py:6
+2026-02-26T03:14:40.365867+0300 DEBUG Сообщение успешно отправлено в топик Kafka = (ready_to_detect) kafka_send kafkaproduce.py:8
+2026-02-26T03:14:40.366570+0300 DEBUG Успшео отправлено в топик! exctract_and_load_frames framer.py:34
+2026-02-26T03:14:40.381616+0300 DEBUG Фреймы нарезаны и успешно загружены в S3 и инфа о всех в БД orkestr_func orkestr.py:33
+2026-02-26T03:14:40.381616+0300 DEBUG Видео и все его фреймы успешно обработаны (S3, БД)! upload_video post.py:43
+2026-02-26T03:20:45.046330+0300 DEBUG Закрываю соединение S3, KAFKA, БД.. lifepsawn post.py:27
+2026-02-26T03:20:45.047795+0300 DEBUG ==================== lifepsawn post.py:29

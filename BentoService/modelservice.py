@@ -1,20 +1,22 @@
 import bentoml
 from pathlib import Path
+from ultralytics import YOLO
 import io
 from typing import Annotated, Dict, Any
 from PIL import Image
 from bentoml.validators import ContentType
 from BentoService.config import CLASSES_MAP, FINETUNED_MAP
+import base64
 
 
 @bentoml.service(resources={'cpu': '2', 'memory': '4Gi'}, traffic={"timeout": 60})
 class Detector:
     def __init__(self): 
-        self.model = bentoml.picklable_model.load_model("yoloe_detector:latest")
-
-        model_info = bentoml.models.get("yoloe_detector:latest")
-        self.classes = model_info.info.metadata['classes']
-        self.conf = model_info.info.metadata['conf_threshold']
+        model_ref = bentoml.models.get("yoloe_detector:latest")
+        model_path = model_ref.path_of("model.onnx" )
+        self.model = YOLO(model_path)
+        self.classes = model_ref.info.metadata['classes']
+        self.conf = model_ref.info.metadata['conf_threshold']
         print(f"Уверенность модели: {self.conf}")
 
         #self.model.set_classes(self.classes)
@@ -22,7 +24,8 @@ class Detector:
     @bentoml.api
     def detect(self, image: Annotated[bytes, ContentType("image/*")]) -> Dict[str, Any]:
         try:
-            pil_image = Image.open(io.BytesIO(image)).convert('RGB')
+            bytes_image = base64.b64decode(image)
+            pil_image = Image.open(io.BytesIO(bytes_image)).convert('RGB')
             results = self.model(pil_image, conf=self.conf)
             boxes = []
             labels = []

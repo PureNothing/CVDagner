@@ -36,7 +36,8 @@
     Сборка образа осуществляется одинаково для всех.
 
     Локальный запуск:
-    1. uv run bentoml serve BentoService.modelservice:Detector - из корня.
+    1. uv run bentoml serve BentoService.modelservice:Detector - из корня. (Запустить конретный эндпоинт)
+    2. uv run bentoml serve BentoService/modelservice.py - из корня. (Запустить все эндпоинты)
     2. Переходим по указанному в консоли URL и тестируем.
 
     Сборка контейнера:

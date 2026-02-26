@@ -1,11 +1,33 @@
-full_camera1_query = """
-query {
-  getCameraReport(cameraId: 1) {
-    cameraId
-    last_description_time
-    peopleCountRow
-    is_weapon_detected
+def query_parse(camera_id):
+    return f"""
+query{{
+  getCameraReport(cameraId: {camera_id}) {{
+    cameraIdReport
+    lastDescriptionTime
+  	objectsSummary{{
+      label
+      count
+    }}
+    isDangerDetected  
+    statusCamera
+  }}
+}}
+"""
+
+full_general_report = """
+query{
+  getGeneralReport{
+    mostDangerousCameraIdAndStats{
+      cameraId
+      label
+      count
+    }
+    totalDetectionsAllTimeAllCameras{
+      cameraId
+      label
+      count
+    }
+    statusOverviev
   }
 }
 """
-

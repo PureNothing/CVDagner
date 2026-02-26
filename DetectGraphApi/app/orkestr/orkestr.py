@@ -1,6 +1,7 @@
 from app.core.config import DETECOR_URL
 from app.services.s3loadupload import s3_client_download_frames, s3_client_upload_to_detected
 from app.services.dbfuncs import DBFuncs
+from app.logger import logger
 from app.drawers.drawer import draw_box
 from app.services.kafkaproducevideoserv import publish_video_produce_service
 from app.services.kafkaproducealertserv import publish_alert_service
@@ -10,31 +11,38 @@ import base64
 
 
 async def orkerstr_func(minio_path: str, camera_id: int):
-
+    logger.debug("Получен файл в пайплайн детекции, запускаю обработку..")
     orig_frame = await s3_client_download_frames.download_file(
         minio_path=minio_path)
     b64_frame = base64.b64encode(orig_frame)
     b64_frame = b64_frame.decode("utf-8")
-    
-    file_type = "jpeg"
-    if "." in minio_path:
-        file_type = minio_path.split(".")[-1]
 
-    async with aiohttp.ClientSession() as session:
-        async with session.post(DETECOR_URL, json = {"image": b64_frame}) as response:
-            response.raise_for_status()
-            dict_response = await response.json()
+    try:
+        logger.debug("Отправляю файл в сервис детекции..")
+        async with aiohttp.ClientSession() as session:
+            async with session.post(DETECOR_URL, json = {"image": b64_frame}) as response:
+                response.raise_for_status()
+                dict_response = await response.json()
+        logger.debug("Файл успешно детектирован, результат получен")
+    except Exception as e:
+        logger.error(f"Ошибка при отправке сервису детекции. {e}")
     
     uniq_name = None
         
     if len(dict_response["boxes"]) > 0:
     
-        detected_img = draw_box(
-            orig_frame,
-            dict_response["boxes"],
-            dict_response["labels"],
-            dict_response["scores"])
-        
+        try:
+            logger.debug("Отпарвляю отрисовывать боксы..")
+            logger.debug(f"Боксов/объект на фрейме {len(dict_response["boxes"])}")
+            detected_img = draw_box(
+                orig_frame,
+                dict_response["boxes"],
+                dict_response["labels"],
+                dict_response["scores"])
+            logger.debug("Боксы успешно отрисованы.")
+        except Exception as e:
+            logger.error(f"Ошибка при отрисовке боксов. {e}")
+
         if "." in minio_path:
             end = minio_path.split(".")[-1]
             start = minio_path.split(".")[0]
