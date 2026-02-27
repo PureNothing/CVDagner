@@ -92,7 +92,7 @@ class DBFuncs:
             logger.debug(f"Получил запрос на получение информации с камеры = {camera_id}. Обрабатываю..")
             async with async_session() as session:
                 stmt = select(Detected_objects.label, func.count(Detected_objects.label)).where(
-                    text('detected_at > now() - INTERVAL "24 hours"')
+                    text("detected_at > now() - INTERVAL '24 hours'")
                 ).where(Detected_objects.camera_id==camera_id).group_by(Detected_objects.label)
                 response = await session.execute(statement=stmt)
                 rows = response.all()
@@ -113,7 +113,7 @@ class DBFuncs:
                         Detected_objects.detected_at.desc()
                     ).limit(1)
                 response = await session.execute(statement=stmt)
-                last_time = response.scalar_one()
+                last_time = response.scalar_one_or_none()
                 logger.debug(f"Последние время детекции камеры = {camera_id} получены.")
                 return last_time
         except Exception as e:

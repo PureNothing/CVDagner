@@ -140,5 +140,5 @@ class Query:
 
 
 schema = strawberry.Schema(query=Query)
-router = APIRouter()
+router = APIRouter(lifespan=lifespawn)
 router.include_router(GraphQLRouter(schema=schema, graphql_ide=True), prefix="/graphql")

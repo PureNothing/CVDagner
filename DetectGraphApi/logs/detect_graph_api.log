@@ -1,31 +1,499 @@
-2026-02-26T21:43:20.962076+0300 DEBUG ==================== check_env config.py:9
-2026-02-26T21:43:20.962076+0300 DEBUG ЗАПУСК check_env config.py:10
-2026-02-26T21:43:20.962076+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:11
-2026-02-26T21:43:22.991918+0300 DEBUG Проверяю Bucket, создаю таблицы и схемы в БД.. lifespawn graphapi.py:16
-2026-02-26T21:43:25.020249+0300 ERROR Ошибка иницилазиции БД или S3 lifespawn graphapi.py:22
-2026-02-26T21:46:13.334931+0300 DEBUG ==================== check_env config.py:9
-2026-02-26T21:46:13.336531+0300 DEBUG ЗАПУСК check_env config.py:10
-2026-02-26T21:46:13.337163+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:11
-2026-02-26T21:53:03.500075+0300 DEBUG Получил запрос на получение информации с камеры = 1. Обрабатываю.. get_single_camera_labels dbfuncs.py:92
-2026-02-26T21:53:05.547568+0300 ERROR Не вышло обработать запрос на возрат данные по камере = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_single_camera_labels dbfuncs.py:102
-2026-02-26T21:53:05.547568+0300 DEBUG Получен запрос на время последней детекции камеры = 1. get_singe_camera_last_detect dbfuncs.py:109
-2026-02-26T21:53:07.605169+0300 ERROR Не удалось получить последнее время детекции для камеры = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_singe_camera_last_detect dbfuncs.py:120
-2026-02-26T21:53:46.645920+0300 DEBUG Получил запрос на получение информации с камеры = 1. Обрабатываю.. get_single_camera_labels dbfuncs.py:92
-2026-02-26T21:53:48.683978+0300 ERROR Не вышло обработать запрос на возрат данные по камере = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_single_camera_labels dbfuncs.py:102
-2026-02-26T21:53:48.685040+0300 DEBUG Получен запрос на время последней детекции камеры = 1. get_singe_camera_last_detect dbfuncs.py:109
-2026-02-26T21:53:50.728633+0300 ERROR Не удалось получить последнее время детекции для камеры = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_singe_camera_last_detect dbfuncs.py:120
-2026-02-26T21:56:12.413770+0300 DEBUG Пришел запрос на статистику по всем камерам за всё время, обрабатываю.. get_every_camera_labels_and_count dbfuncs.py:145
-2026-02-26T21:56:14.458319+0300 ERROR Не вышло предоставить отчет по всем камерам. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_every_camera_labels_and_count dbfuncs.py:154
-2026-02-26T21:56:14.459325+0300 DEBUG Пришел запрос узнать самую опасную камреу, обрабатываю.. get_most_dangerous_camera_and_stats dbfuncs.py:125
-2026-02-26T21:56:16.505202+0300 ERROR Ошибка обработки запроса по самой опасной камере. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_most_dangerous_camera_and_stats dbfuncs.py:140
-2026-02-27T00:03:56.935675+0300 DEBUG ==================== check_env config.py:9
-2026-02-27T00:03:56.946243+0300 DEBUG ЗАПУСК check_env config.py:10
-2026-02-27T00:03:56.946243+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:11
-2026-02-27T00:04:52.975113+0300 DEBUG Получил запрос на получение информации с камеры = 1. Обрабатываю.. get_single_camera_labels dbfuncs.py:92
-2026-02-27T00:04:55.030127+0300 ERROR Не вышло обработать запрос на возрат данные по камере = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_single_camera_labels dbfuncs.py:102
-2026-02-27T00:04:55.030127+0300 DEBUG Получен запрос на время последней детекции камеры = 1. get_singe_camera_last_detect dbfuncs.py:109
-2026-02-27T00:04:57.084897+0300 ERROR Не удалось получить последнее время детекции для камеры = 1. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_singe_camera_last_detect dbfuncs.py:120
-2026-02-27T00:53:55.550652+0300 DEBUG Пришел запрос на статистику по всем камерам за всё время, обрабатываю.. get_every_camera_labels_and_count dbfuncs.py:145
-2026-02-27T00:53:57.584913+0300 ERROR Не вышло предоставить отчет по всем камерам. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_every_camera_labels_and_count dbfuncs.py:154
-2026-02-27T00:53:57.585491+0300 DEBUG Пришел запрос узнать самую опасную камреу, обрабатываю.. get_most_dangerous_camera_and_stats dbfuncs.py:125
-2026-02-27T00:53:59.626814+0300 ERROR Ошибка обработки запроса по самой опасной камере. [Errno 10061] Connect call failed ('127.0.0.1', 5432) get_most_dangerous_camera_and_stats dbfuncs.py:140
+2026-02-27T22:46:42.612162+0300 DEBUG ==================== check_env config.py:9
+2026-02-27T22:46:42.613162+0300 DEBUG ЗАПУСК check_env config.py:10
+2026-02-27T22:46:42.613162+0300 DEBUG Начинаю проверку необходимых переменных.. check_env config.py:11
+2026-02-27T22:46:44.534640+0300 DEBUG Проверяю Bucket, создаю таблицы и схемы в БД.. lifespawn graphapi.py:16
+2026-02-27T22:46:44.590087+0300 DEBUG Создаю схему, удаляю таблицы, создаю новые.. create_tables dbfuncs.py:11
+2026-02-27T22:46:44.590087+0300 DEBUG Создаю схему DetectionService если её нет.. create_tables dbfuncs.py:13
+2026-02-27T22:46:44.600168+0300 DEBUG Схема успешно создана. create_tables dbfuncs.py:15
+2026-02-27T22:46:44.600958+0300 DEBUG Удаляю таблицы.. create_tables dbfuncs.py:16
+2026-02-27T22:46:44.612126+0300 DEBUG Таблицы удалены успешно. create_tables dbfuncs.py:18
+2026-02-27T22:46:44.612126+0300 DEBUG Создаю новые таблицы.. create_tables dbfuncs.py:19
+2026-02-27T22:46:45.973193+0300 DEBUG Таблицы (Detected_frames), (Deteted_objects) успешно созданы БД готов к работе. create_tables dbfuncs.py:21
+2026-02-27T22:46:46.313883+0300 DEBUG Проверяю есть ли Buckett = detected bucket_check s3loadupload.py:31
+2026-02-27T22:46:46.338856+0300 DEBUG Bucket = detected уже есть, отлично! bucket_check s3loadupload.py:34
+2026-02-27T22:46:46.444817+0300 DEBUG Проверяю есть ли Buckett = frames bucket_check s3loadupload.py:31
+2026-02-27T22:46:46.467355+0300 DEBUG Bucket = frames уже есть, отлично! bucket_check s3loadupload.py:34
+2026-02-27T22:46:46.469358+0300 DEBUG БД и S3 успешно инициализированы и готовы к работе. lifespawn graphapi.py:20
+2026-02-27T22:46:46.469358+0300 DEBUG Открываю TCP соединение с Kafka... lifespawn graphapi.py:25
+2026-02-27T22:46:54.624967+0300 DEBUG TCP соединение с Kafka успешно открыто. lifespawn graphapi.py:27
+2026-02-27T22:48:33.853460+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:48:33.853979+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:48:33.861521+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:48:33.904597+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:48:33.909055+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:48:34.421807+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:48:34.422316+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:48:34.431301+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:48:34.469157+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:48:34.471927+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:48:35.391692+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:48:35.391692+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:48:35.401790+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:48:35.467287+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:48:35.470132+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:26.301397+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:26.301397+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:49:26.302319+0300 DEBUG Боксов/объект на фрейме 2 orkerstr_func orkestr.py:36
+2026-02-27T22:49:27.902288+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:49:27.913333+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:49:28.198750+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:49:28.202264+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:28.488656+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:28.492462+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:49:28.798807+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:49:28.799812+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:49:28.867754+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:49:28.868754+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:49:33.249833+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:49:33.250342+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:33.256103+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:33.256636+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:33.258411+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:33.259000+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:33.334724+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:33.358425+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:33.358425+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:34.494058+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:34.495059+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:34.733046+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:34.734053+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:34.737170+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:34.737881+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:34.738979+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:34.738979+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:34.744403+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:34.772574+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:34.775063+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:35.730283+0300 ERROR Ошибка при отправке сервису детекции. 504, message='Gateway Timeout', url='http://localhost:7777/detect' orkerstr_func orkestr.py:28
+2026-02-27T22:49:35.732150+0300 ERROR Файл не смог пройти пайплайн детекции. cannot access local variable 'dict_response' where it is not associated with a value ready_to_detect kafkaconsume.py:17
+2026-02-27T22:49:36.008526+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:36.008526+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:36.008526+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:36.043401+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:36.043401+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:44.000428+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:44.000428+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:44.423171+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:44.423171+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:44.427248+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:44.427834+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:44.428990+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:44.429559+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:44.435245+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:44.463792+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:44.463792+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:48.308610+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:48.309173+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:48.333757+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:48.333757+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:48.345292+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:48.345797+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:48.347362+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:48.347362+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:48.353999+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:48.379345+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:48.379345+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:52.596354+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:52.596354+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:52.723116+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:52.723116+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:52.727076+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:52.727076+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:52.728702+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:52.728702+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:52.735932+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:52.763245+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:52.765687+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:49:57.459287+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:49:57.459287+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:49:57.460087+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:49:57.467137+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:49:57.477472+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:49:57.889531+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:49:57.890645+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:49:57.931879+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:49:57.931879+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:49:57.968442+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:49:57.969441+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:49:57.972680+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:49:57.973252+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:49:57.975949+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:49:57.975949+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:49:57.977546+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:49:57.977546+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:49:57.983549+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:49:58.015855+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:49:58.019937+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:01.699523+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:01.700058+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:01.842177+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:01.844775+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:01.847333+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:01.847839+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:01.848932+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:01.848932+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:01.853327+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:01.917041+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:01.920103+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:06.201457+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:06.202512+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:50:06.203054+0300 DEBUG Боксов/объект на фрейме 3 orkerstr_func orkestr.py:36
+2026-02-27T22:50:06.211051+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:50:06.221252+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:50:06.540078+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:50:06.542347+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:06.755111+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:06.755111+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:50:06.817350+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:50:06.818346+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:50:06.978325+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:50:06.978325+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:50:07.204491+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:50:07.205498+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:50:07.209723+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:50:07.210604+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:07.213930+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:07.214494+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:07.215553+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:07.216125+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:07.221704+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:07.251641+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:07.251641+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:10.796167+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:10.796701+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:10.837843+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:10.837843+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:10.841517+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:10.842024+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:10.843633+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:10.843633+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:10.850420+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:10.874877+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:10.876884+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:15.394235+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:15.394773+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:15.550650+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:15.551224+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:15.553907+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:15.554412+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:15.555472+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:15.555472+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:15.560723+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:15.585932+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:15.590913+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:20.091535+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:20.092100+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:50:20.092100+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:50:20.099588+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:50:20.106529+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:50:20.522893+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:50:20.532579+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:20.735059+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:20.735059+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:50:20.772391+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:50:20.772391+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:50:20.778402+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:50:20.778963+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:20.781792+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:20.782335+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:20.783517+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:20.784138+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:20.795429+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:20.826885+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:20.830046+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:24.593267+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:24.593792+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:24.780953+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:24.782970+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:24.786578+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:24.787336+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:24.789958+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:24.791881+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:24.802535+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:24.838088+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:24.841124+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:29.093892+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:29.094435+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:29.252283+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:29.252283+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:29.257428+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:29.257960+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:29.259016+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:29.259552+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:29.264795+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:29.291503+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:29.295828+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:32.992034+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:32.992586+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:33.048118+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:33.048546+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:33.051834+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:33.052424+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:33.053489+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:33.053489+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:33.058727+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:33.087684+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:33.087684+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:37.692389+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:37.692924+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:37.845590+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:37.845590+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:37.849328+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:37.849834+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:37.850924+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:37.850924+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:37.855416+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:37.879477+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:37.880544+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:42.192525+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:42.192525+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:42.390576+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:42.390576+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:42.395434+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:42.395943+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:42.398291+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:42.398809+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:42.407507+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:42.428547+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:42.435823+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:46.486292+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:46.487440+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:46.543045+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:46.543460+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:46.545893+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:46.546733+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:46.547847+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:46.547847+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:46.552989+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:46.576991+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:46.579000+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:50.798550+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:50.799091+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:50.967772+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:50.967772+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:50.971932+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:50.972500+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:50.974144+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:50.974678+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:50.986732+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:51.021351+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:51.024246+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:55.389624+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:55.390163+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:50:55.490545+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:50:55.491313+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:50:55.496260+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:50:55.496793+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:50:55.498339+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:50:55.498883+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:50:55.505644+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:50:55.532461+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:50:55.538033+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:50:59.794003+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:50:59.794537+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:50:59.795077+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:50:59.802338+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:50:59.809262+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:51:00.164379+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:51:00.166387+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:00.379119+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:00.380234+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:51:00.533516+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:51:00.533516+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:51:00.540992+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:51:00.541533+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:00.544149+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:00.544727+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:00.545805+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:00.545805+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:00.552687+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:00.576743+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:00.578740+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:04.399663+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:04.400898+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:04.444522+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:04.444522+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:04.448034+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:04.448810+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:04.449903+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:04.450435+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:04.455588+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:04.478068+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:04.485008+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:08.694944+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:08.695487+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:08.788536+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:08.788536+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:08.792721+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:08.793233+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:08.794984+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:08.795539+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:08.802338+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:08.825136+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:08.825136+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:13.100273+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:13.100864+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:13.300440+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:13.301454+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:13.304018+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:13.304528+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:13.306032+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:13.306032+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:13.311211+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:13.336387+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:13.338368+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:17.784755+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:17.785336+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:17.903982+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:17.903982+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:17.907629+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:17.908167+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:17.909800+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:17.910346+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:17.916240+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:17.943787+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:17.946303+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:22.801018+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:22.801608+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:22.950800+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:22.951799+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:22.954900+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:22.955405+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:22.957098+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:22.957098+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:22.964973+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:23.005212+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:23.009593+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:27.593127+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:27.593673+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:27.757045+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:27.758052+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:27.761064+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:27.761671+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:27.762753+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:27.762753+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:27.770031+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:27.802964+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:27.806005+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:32.181437+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:32.182038+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:51:32.182631+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:51:32.189633+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:51:32.200142+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:51:32.585532+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:51:32.588409+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:32.821432+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:32.822422+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:51:32.885063+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:51:32.886058+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:51:32.890839+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:51:32.890839+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:32.894599+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:32.895127+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:32.898004+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:32.898619+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:32.907327+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:32.932033+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:32.933546+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:36.797454+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:36.797454+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:36.976401+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:36.977411+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:36.980775+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:36.981422+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:36.984256+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:36.984877+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:36.992572+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:37.021238+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:37.023207+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:41.479636+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:41.480781+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:41.620541+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:41.620541+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:41.624756+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:41.624756+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:41.626437+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:41.626988+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:41.632866+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:41.659939+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:41.661451+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:46.083089+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:46.084165+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:46.385706+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:46.385706+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:46.390964+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:46.390964+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:46.393794+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:46.394505+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:46.405766+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:46.434058+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:46.437140+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:50.586227+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:50.586762+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:50.789695+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:50.790229+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:50.793963+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:50.794537+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:50.796678+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:50.797421+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:50.804978+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:50.832158+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:50.838189+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:55.280539+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:55.281412+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:51:55.281919+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:51:55.289604+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:51:55.299418+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:51:55.627203+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:51:55.630214+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:55.852190+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:55.853158+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:51:55.901534+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:51:55.901534+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:51:55.904702+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:51:55.905343+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:55.907655+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:55.908217+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:51:55.909880+0300 DEBUG Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку.. ready_to_detect kafkaconsume.py:13
+2026-02-27T22:51:55.909880+0300 DEBUG Получен файл в пайплайн детекции, запускаю обработку.. orkerstr_func orkestr.py:14
+2026-02-27T22:51:55.915946+0300 DEBUG Получил путь пробую скачать файл из Bucket = frames download_file s3loadupload.py:69
+2026-02-27T22:51:55.943131+0300 DEBUG Файл успешно скачан из Bucket = frames download_file s3loadupload.py:74
+2026-02-27T22:51:55.945140+0300 DEBUG Отправляю файл в сервис детекции.. orkerstr_func orkestr.py:21
+2026-02-27T22:51:59.895575+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:51:59.895575+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:51:59.923099+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:51:59.924105+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:51:59.927863+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:51:59.928370+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:52:04.478638+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:52:04.479222+0300 DEBUG Отпарвляю отрисовывать боксы.. orkerstr_func orkestr.py:35
+2026-02-27T22:52:04.479917+0300 DEBUG Боксов/объект на фрейме 1 orkerstr_func orkestr.py:36
+2026-02-27T22:52:04.487642+0300 DEBUG Боксы успешно отрисованы. orkerstr_func orkestr.py:42
+2026-02-27T22:52:04.499496+0300 DEBUG Получил данные пробую загрузить в Bucket = detected upload_file s3loadupload.py:52
+2026-02-27T22:52:04.797081+0300 DEBUG Файл успешно загружен в S3, Bucket = detected upload_file s3loadupload.py:58
+2026-02-27T22:52:04.799081+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:52:05.021824+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:52:05.022825+0300 DEBUG Полученные данные о детектированном объекте, гружу в БД... insert_detected_object dbfuncs.py:64
+2026-02-27T22:52:05.084700+0300 DEBUG Данные о детектированном объекте успешно загружены в БД. insert_detected_object dbfuncs.py:82
+2026-02-27T22:52:05.084700+0300 DEBUG Получены результаты детекции публикую в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:6
+2026-02-27T22:52:05.088862+0300 DEBUG Реузльтаты детекции успешно опубликованы в топик Kafka = (alerts_topic). publish_alert_service kafkaproducealertserv.py:8
+2026-02-27T22:52:05.089367+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:52:05.093253+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:52:05.093803+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:52:09.182745+0300 DEBUG Файл успешно детектирован, результат получен orkerstr_func orkestr.py:26
+2026-02-27T22:52:09.183295+0300 DEBUG Получен обработанной фрейм пробую вставить данные о нем в БД.. insert_detected_frame dbfuncs.py:32
+2026-02-27T22:52:09.336354+0300 DEBUG Данные о детектерированном фрейме успешно загружены в БД возвращаю его id. insert_detected_frame dbfuncs.py:46
+2026-02-27T22:52:09.336354+0300 DEBUG Получено сообщение что фрейм был обработан отправял в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:6
+2026-02-27T22:52:09.339443+0300 DEBUG Успешно отправлено в топик Kafka = (frame_detected). publish_video_produce_service kafkaproducevideoserv.py:8
+2026-02-27T22:52:09.339998+0300 DEBUG Файл успешно прошел весь цикл обработки. ready_to_detect kafkaconsume.py:15
+2026-02-27T22:57:00.137404+0300 DEBUG Получил запрос на получение информации с камеры = 1. Обрабатываю.. get_single_camera_labels dbfuncs.py:92
+2026-02-27T22:57:00.341395+0300 DEBUG Отчет по объектам камеры = 1 успешно полчен. get_single_camera_labels dbfuncs.py:99
+2026-02-27T22:57:00.342394+0300 DEBUG Получен запрос на время последней детекции камеры = 1. get_singe_camera_last_detect dbfuncs.py:109
+2026-02-27T22:57:00.482386+0300 DEBUG Последние время детекции камеры = 1 получены. get_singe_camera_last_detect dbfuncs.py:117
+2026-02-27T22:58:40.970375+0300 DEBUG Пришел запрос на статистику по всем камерам за всё время, обрабатываю.. get_every_camera_labels_and_count dbfuncs.py:145
+2026-02-27T22:58:40.975815+0300 DEBUG Статистика по всем камерам и объектам на них, успешно получена get_every_camera_labels_and_count dbfuncs.py:151
+2026-02-27T22:58:40.976822+0300 DEBUG Пришел запрос узнать самую опасную камреу, обрабатываю.. get_most_dangerous_camera_and_stats dbfuncs.py:125
+2026-02-27T22:58:40.984076+0300 DEBUG Самая опасная камера и ее статистика успешно узнана, отправляю. get_most_dangerous_camera_and_stats dbfuncs.py:137
+2026-02-27T23:05:13.961499+0300 DEBUG Закрываю соединения Kafka, завершаю работу... lifespawn graphapi.py:33
+2026-02-27T23:05:13.964161+0300 DEBUG Соединения закрыты работа заверешена успешно. lifespawn graphapi.py:35
+2026-02-27T23:05:13.964666+0300 DEBUG ==================== lifespawn graphapi.py:36

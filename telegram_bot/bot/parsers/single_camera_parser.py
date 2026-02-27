@@ -12,7 +12,7 @@ def format_answer(response):
                 object_text = object_text + f"• {obj['label']} — {obj['count']} шт.\n"
 
         text = (
-            f"🚨 Отчёт по камере {camera_id_report}\n"
+            f"🚨 {camera_id_report}\n"
             f"🕐 Последнее обнаружение: {last_detection_time}\n"
             f"📊 Обнаруженные объекты:\n"
             f"{object_text}"
@@ -21,7 +21,7 @@ def format_answer(response):
     
     else:
         text = (
-            f"✅ Отчёт по камере {camera_id_report}\n"
+            f"✅ {camera_id_report}\n"
             f"{description}"
         )
 

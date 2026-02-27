@@ -26,6 +26,7 @@ async def orkerstr_func(minio_path: str, camera_id: int):
         logger.debug("Файл успешно детектирован, результат получен")
     except Exception as e:
         logger.error(f"Ошибка при отправке сервису детекции. {e}")
+        raise
     
     uniq_name = None
         
