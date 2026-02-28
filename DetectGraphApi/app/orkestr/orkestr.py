@@ -75,6 +75,6 @@ async def orkerstr_func(minio_path: str, camera_id: int):
                 box_y2 = box_y2
             )
 
-        await publish_alert_service(detection_results = dict_response)
+        await publish_alert_service(detection_results = dict_response, camera_id = camera_id)
     
     await publish_video_produce_service(minio_path=minio_path)
