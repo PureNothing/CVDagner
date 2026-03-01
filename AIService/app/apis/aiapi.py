@@ -4,13 +4,16 @@ from app.orkestrs.orkestr import orkestr_func
 from fastapi.responses import JSONResponse
 from app.logger import logger
 from pydantic import BaseModel
+from app.core.kafkabroker import broker
 
 @asynccontextmanager
 async def lifespawn(router):
     logger.debug("="*20)
-    logger.debug("Открываю ендипоинт начинаю работу")
+    logger.debug("Открываю ендипоинт и TCP с Kafka начинаю работу")
+    await broker.start()
     yield
-    logger.debug("Закрываю соединени и заканчиваю..")
+    await broker.stop()
+    logger.debug("Закрываю соединени TCP с kafka и заканчиваю..")
     logger.debug("="*20)
 
 router = APIRouter(lifespan=lifespawn)

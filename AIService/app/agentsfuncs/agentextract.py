@@ -1,4 +1,4 @@
-from app.core.sgrpompt import SGR
+from app.core.sgrextractpompt import SGR
 from app.core.so import SO
 from app.logger import logger
 from app.core.config import client

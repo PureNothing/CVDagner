@@ -62,8 +62,11 @@ async def full_report(callback: CallbackQuery):
 async def alert_settings(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await callback.message.answer(
-        "🔢 Введите порог срабатывания (целое число):\n"
-        "Например: 5 (если опасностей больше 5)"
+        "Выберете номер камеры для которой хотите установить порог."
+        "Затем выберете класс для которого хотите установить порог"
+        "Затем укажите сам порог:"
+        "🔢 (целое число):\n"
+        "Например: порог танков для камеры один хочу 5 (если опасностей больше 5)"
     )
     await state.set_state(Settings.waiting_threshold)
 

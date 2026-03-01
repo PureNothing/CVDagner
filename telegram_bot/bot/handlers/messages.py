@@ -4,6 +4,8 @@ from bot.keyboards.buttons import home_kb
 from bot.handlers.states import Settings
 from aiogram.fsm.context import FSMContext
 import aiohttp
+from bot.core.config import AI_THRESHOLD_URL
+from bot.logger import logger
 
 router = Router()
 
@@ -52,8 +54,12 @@ async def help(message: Message):
 @router.message(Settings.waiting_threshold)
 async def save_threshold(message: Message, state: FSMContext):
     try:
-        threshold = int(message.text)
-        await message.answer(f"✅ Порог установлен {threshold}")
+        logger.debug(f"Пришло собщение от пользователя на замену порога - {message.text}.")
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url=AI_THRESHOLD_URL, json={"message": message.text}) as response:
+                result = await response.json()
+
+        await message.answer(f"✅ Порог установлен {result['status']}")
         await state.clear()
     except ValueError:
         await message.answer("❌ Это не число. Введите число.")

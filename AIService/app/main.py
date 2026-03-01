@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.apis.aiapi import router
 import uvicorn
+from app.services import kafkaconsume
 
 app = FastAPI()
 app.include_router(router=router)

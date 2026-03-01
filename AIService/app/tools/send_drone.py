@@ -2,7 +2,7 @@ import aiohttp
 from app.core.config import GET_COORDINATES_URL
 from app.logger import logger
 
-async def send_drone(camera_id: int):
+async def send_drone_tool(camera_id: int):
     try:
         logger.debug(f"Запрашиваю отправу дрона к камере {camera_id}.")
         async with aiohttp.ClientSession() as session:
