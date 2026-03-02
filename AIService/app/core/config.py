@@ -7,5 +7,6 @@ API_KEY = os.getenv("GROQ_API_KEY")
 UPDATE_ALERTS_URL = "http://localhost:8002/change_rules"
 UPDATE_COORDINATES_URL = "http://localhost:8002/change_coordinates"
 GET_COORDINATES_URL = "http://localhost:8002/get_coordinates"
+GET_RESTRICTIONS_URL = "http://localhost:8002/get_restrictions"
 KAFKA_URL = "localhost:9092"
 client = AsyncGroq(api_key=API_KEY)

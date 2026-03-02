@@ -9,13 +9,19 @@ class AlertMessage(BaseModel):
     camera_id: int
     label: str
     count: int
+    place: str
+    coordinates: list
 
 @broker.subscriber("real_alerts")
 async def alert_messages(message: AlertMessage):
     text = (
         f"🚨 Тревога, порог превышен!\n\n"
-        f"📹 Камера: {message.camera_id}\n"
-        f"🎯 Обнаружено:\n"
+        f"📹 Камера: {message.camera_id}\n\n"
+         f"📍 Коордианаты:\n"
+        f"{message.coordinates}\n\n"
+        f"🏔️ Местность:\n"
+        f"{message.place}\n\n"
+        f"🎯 Обнаружено:\n\n"
         f"• {message.label}: {message.count} шт."
     )
     try:

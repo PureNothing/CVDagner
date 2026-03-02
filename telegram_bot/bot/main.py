@@ -7,7 +7,7 @@ from bot.menus.buttonmenu import setup_menu
 import asyncio
 from bot.logger import logger
 from bot.core.kafkabroker import broker
-from bot.services import kafkaconume
+from bot.services import kafkaconsume
 from bot.services import kafkaconsumeactions
 
 

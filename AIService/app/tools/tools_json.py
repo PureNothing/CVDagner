@@ -19,7 +19,7 @@ tools = [
     {
         "type": "function",
         "function": {
-            "name": "sen_drone_tool",
+            "name": "send_drone_tool",
             "description": "Отправить разведывательного дрона по коордианатам камеры.",
             "parameters": {
                 "type": "object",

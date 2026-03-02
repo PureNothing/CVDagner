@@ -61,8 +61,9 @@ async def save_threshold(message: Message, state: FSMContext):
 
         await message.answer(f"✅ Порог установлен {result['status']}")
         await state.clear()
-    except ValueError:
-        await message.answer("❌ Это не число. Введите число.")
+    except Exception as e:
+        logger.error("Ошибка при изменении порога..")
+        await message.answer("❌ Не понял. Переформулируйте.")
 
 
 

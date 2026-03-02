@@ -26,6 +26,8 @@ async def ai_rules(message: BotMessage):
     logger.debug("Получено сообщени от пользователя об изменении правил отправляю в оркестратор.")
     try:
         result = await orkestr_func(message=message.message)
+        if result == "Не понял, переформулируйте запрос.":
+            return JSONResponse(status_code=400, content={"status": result})
         logger.debug("Успешно отправлено в сервис изменения правил.")
         return JSONResponse(status_code=200, content={"status": result})
     except Exception as e:

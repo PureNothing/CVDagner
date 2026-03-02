@@ -11,7 +11,7 @@ async def orkestr_func(message: str):
         if isinstance (so, SO):
             async with aiohttp.ClientSession() as session:
                 so = so.model_dump()
-                async with session.post(url=UPDATE_ALERTS_URL, json={"message": so}) as response:
+                async with session.post(url=UPDATE_ALERTS_URL, json={"camera_id": so["camera_id"], "label": so["label"], "threshold": so["count"]}) as response:
                     response.raise_for_status()
                     logger.debug("Факты успешно извлечены и отправлены на сервер изменения алертов.")
                     return "Отправлено на сервер алертов и правил."

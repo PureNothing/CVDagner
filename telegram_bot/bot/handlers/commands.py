@@ -35,8 +35,6 @@ async def settings(message: Message, state: FSMContext):
 
 @router.message(Settings.waiting_key)
 async def key_check(message: Message, state: FSMContext):
-    print(f"KEY FROM ENV: '{SETTINGS_KEY}'")  # что реально в переменной
-    print(f"KEY FROM USER: '{message.text}'") # что прислал пользователь
     if message.text == SETTINGS_KEY:
         await message.answer("✅ Доступ разрешен", reply_markup=settings_kb)
         await state.set_state(Settings.in_settings)

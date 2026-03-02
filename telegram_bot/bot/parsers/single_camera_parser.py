@@ -1,4 +1,4 @@
-def format_answer(response):
+def format_answer(response, response_coordinates, response_place):
     camera_id_report = response["data"]["getCameraReport"]["cameraIdReport"]
     last_detection_time = response["data"]["getCameraReport"]["lastDescriptionTime"]
     objects_summary = response["data"]["getCameraReport"]["objectsSummary"]
@@ -13,6 +13,10 @@ def format_answer(response):
 
         text = (
             f"🚨 {camera_id_report}\n"
+            f"📍 Координаты:"
+            f"{response_coordinates}"
+            f"🏔️ Местность:"
+            f"{response_place}\n"
             f"🕐 Последнее обнаружение: {last_detection_time}\n"
             f"📊 Обнаруженные объекты:\n"
             f"{object_text}"
@@ -22,6 +26,10 @@ def format_answer(response):
     else:
         text = (
             f"✅ {camera_id_report}\n"
+            f"📍 Координаты:"
+            f"{response_coordinates}"
+            f"🏔️ Местность:"
+            f"{response_place}\n"
             f"{description}"
         )
 

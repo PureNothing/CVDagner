@@ -7,14 +7,14 @@ from app.tools.send_drone import send_drone_tool
 import json
 from app.services.kafkapublishactions import action_publish
 
-async def tools_agent(message: str):
+async def tools_agent(message: str, mestnost: str):
     try:
         logger.debug("Пришло тревожное сообщение, отправляю агенту для выбора инструментов.")
         resonse = await client.chat.completions.create(
             model="openai/gpt-oss-120b",
             messages=[
                 {"role": "system", "content": TOOLCALL_PROMT},
-                {"role": "user", "content": message}
+                {"role": "user", "content": f"{message}\n{mestnost}"}
             ],
             tools=tools
         )
