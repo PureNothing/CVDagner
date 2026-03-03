@@ -11,5 +11,6 @@ home_kb = InlineKeyboardMarkup(inline_keyboard=[
 
 settings_kb = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(text="🔔 Сменить порог алертов", callback_data="alert_settings")],
+    [InlineKeyboardButton(text="📷 Добавить камеру", callback_data="add_camera")],
     [InlineKeyboardButton(text="🔙 Выйти", callback_data="exit_settings")]
 ])

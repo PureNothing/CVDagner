@@ -87,6 +87,8 @@ def report_format_answer(response, cor_plc):
             f"{cor_plc[4][0]}\n\n"
             f"🏔️ Местность:\n"
             f"{cor_plc[4][1]}\n\n"
-            f"🟢 {status_overviev}"
+            f"🟢 {status_overviev}\n"
+            f"Если какие то камеры не указаны, значит на них ничего не было обнаружено."
+            f"Если какие то объекты не указаны значит их не было обнаружено на камере."
         )
         return text

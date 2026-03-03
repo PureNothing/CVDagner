@@ -4,7 +4,7 @@ from bot.keyboards.buttons import home_kb
 from bot.handlers.states import Settings
 from aiogram.fsm.context import FSMContext
 import aiohttp
-from bot.core.config import AI_THRESHOLD_URL
+from bot.core.config import AI_THRESHOLD_URL, AI_NEW_CAMERA_URL
 from bot.logger import logger
 
 router = Router()
@@ -58,12 +58,28 @@ async def save_threshold(message: Message, state: FSMContext):
         async with aiohttp.ClientSession() as session:
             async with session.post(url=AI_THRESHOLD_URL, json={"message": message.text}) as response:
                 result = await response.json()
-
-        await message.answer(f"✅ Порог установлен {result['status']}")
+        if response.status == 400:
+            await message.answer(f"❌ {result['status']}")
+        else:
+            await message.answer(f"✅ Доставлено в сервис настроек: {result['status']}")
         await state.clear()
     except Exception as e:
         logger.error("Ошибка при изменении порога..")
         await message.answer("❌ Не понял. Переформулируйте.")
+
+@router.message(Settings.waiting_newcamera_settings)
+async def new_camera(message: Message, state: FSMContext):
+    try:
+        logger.debug(f"Пришло сообщение от пользователя на замену камеры в бота - {message.text} отправляю в AI.")
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url=AI_NEW_CAMERA_URL, json={"message": message.text}) as response:
+                result = await response.json()
+        
+        await message.answer(f"✅ Камера добавлена {result['status']}")
+        await state.clear()
+    except Exception as e:
+        logger.error("Ошибка при доабвлении камеры.")
+        await message.answer("❌ Не понял, переформулируйте запрос.")
 
 
 

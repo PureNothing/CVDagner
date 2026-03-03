@@ -61,13 +61,38 @@ async def full_report(callback: CallbackQuery):
 async def alert_settings(callback: CallbackQuery, state: FSMContext):
     await callback.answer()
     await callback.message.answer(
-        "Выберете номер камеры для которой хотите установить порог."
-        "Затем выберете класс для которого хотите установить порог"
-        "Затем укажите сам порог:"
-        "🔢 (целое число):\n"
-        "Например: порог танков для камеры один хочу 5 (если опасностей больше 5)"
+        "⚙️ <b>Настройка порогов алертов</b>\n\n"
+        "Укажите номер камеры, класс и желаемый порог одним сообщением.\n\n"
+        "🎯 <b>Доступные классы:</b>\n"
+        "🪖 Пехота\n"
+        "🛡 Танк\n"
+        "🚛 БМП (Боевая Машина Пехоты)\n"
+        "🚜 БТР (Бронетранспортер)\n"
+        "🚗 Бронемашина\n"
+        "💣 Артиллерия\n"
+        "🚀 РСЗО (Ракетная Система Залпового Огня)\n"
+        "✈️ БПЛА (Беспилотный Летательный Аппарат)\n\n"
+        "📝 <b>Пример:</b>\n"
+        "Порог танков для камеры 1 хочу 5 (если танков станет больше 5 — придёт алерт)",
+        parse_mode="HTML"
     )
     await state.set_state(Settings.waiting_threshold)
+
+@router.callback_query(Settings.in_settings, F.data == "add_camera")
+async def add_camera(callback: CallbackQuery, state: FSMContext):
+    await callback.answer()
+    await callback.message.answer(
+        "📷 <b>Добавление новой камеры</b>\n\n"
+        "Напишите данные камеры одним сообщением:\n\n"
+        "🔢 <b>Номер камеры</b> — целое число\n"
+        "📍 <b>Координаты</b> — два числа через пробел\n"
+        "🌍 <b>Описание местности</b> — что находится вокруг камеры\n\n"
+        "📝 <b>Пример:</b>\n"
+        "Добавь камеру 6, координаты 48.123 и 37.456, открытое поле рядом с густым лесом, гражданских нет.\n\n"
+        "Порог для каждого класса по умолачнию установится = 2, позже вы сможете это сменить через настройки алертов.",
+        parse_mode="HTML"
+    )
+    await state.set_state(Settings.waiting_newcamera_settings)
 
 @router.callback_query(Settings.in_settings, F.data == "exit_settings")
 async def exit_settings(callback: CallbackQuery, state: FSMContext):

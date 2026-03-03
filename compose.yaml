@@ -5,6 +5,7 @@ volumes:
   kafka_secrets:
   kafka_config:
   pgadmin_data:
+  redis_data:
 
 networks:
   dbnet:
@@ -39,9 +40,13 @@ services:
     shm_size: 128M
 
   redis:
-    image: "redis"
+    image: "redis:latest"
+    volumes:
+      - redis_data:/data
+    networks:
+      - dbnet
     ports:
-      - "6379:6379"
+      - "0.0.0.0:6379:6379"
 
   minio:
     image: minio/minio:RELEASE.2025-09-07T16-13-09Z-cpuv1

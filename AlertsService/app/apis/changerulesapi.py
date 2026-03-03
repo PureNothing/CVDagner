@@ -31,7 +31,9 @@ class Body(BaseModel):
 async def change_rules(message: Body):
     logger.debug("Получено сообщение со стороны бота на обновление правил, обрабатываю..")
     try:
-        await update_rules_func(camera_id=message.camera_id, label=message.label, threshold=message.threshold)
+        result = await update_rules_func(camera_id=message.camera_id, label=message.label, threshold=message.threshold)
+        if isinstance(result, str):
+            return JSONResponse(status_code=400, content={"status": result})
         logger.debug("Правила успешно изменены.")
         return JSONResponse(status_code=200, content={"status": "rules_changed"})
     except Exception as e:
