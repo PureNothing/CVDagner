@@ -21,6 +21,7 @@ async def lifepsawn(router):
     try:
         logger.debug("Открываю соединие TCP c Kafka..")
         await broker.start()
+        logger.debug("Соединение успешно открыто, сервис готов к работе.")
     except Exception as e:
         logger.debug(f"Ошибка открытия соединия TCP с Kafka. {e}")
     yield

@@ -10,10 +10,11 @@ from bot.logger import logger
 from bot.core.kafkabroker import broker
 from bot.services import kafkaconsume
 from bot.services import kafkaconsumeactions
+from bot.celery import tasks
 import threading
 
 def start_worker():
-   app.worker_main(argv=['worker', '--loglevel=info'])
+   app.worker_main(argv=['worker', '--loglevel=info', '--pool=solo'])
 
 def start_beat():
    app.Beat(loglevel="info").run()

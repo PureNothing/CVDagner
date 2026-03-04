@@ -16,6 +16,7 @@ async def exctract_new_camera_func(message: str):
         )
         text = response.choices[0].message.content
         so = SONEWCAMERA.model_validate_json(text)
+        logger.debug(f"Извлечённые факты: camera_id={so.camera_id}, coordinates={so.coordinates}, place={so.place}")
         logger.debug("Факты для добавления камеры успешно извлечены, отпраляю в сервис правил..")
         return so
     except Exception as e:

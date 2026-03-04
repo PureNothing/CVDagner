@@ -7,7 +7,7 @@ class FrameModel(BaseModel):
     minio_path: str
     camera_id: int
 
-@broker.subscriber("ready_to_detect", max_workers=3)
+@broker.subscriber("ready_to_detect", max_workers=2)
 async def ready_to_detect(message: FrameModel):
     try:
         logger.debug("Получение адрес Minio из топика Kafka = (ready_to_detect) отправляю на обработку..")

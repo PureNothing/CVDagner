@@ -6,14 +6,14 @@ from app.logger import logger
 async def update_rules_func(camera_id, label: str, threshold: int):
     try:
         if label in LABELS:
-            async with aiofiles.open("app/rules/rules.json", "r") as f:
+            async with aiofiles.open("app/rules/rules.json", "r", encoding="utf-8-sig") as f:
                 data = await f.read()
                 rules = json.loads(data)
                 if str(camera_id) not in rules['cameras']:
                     return f"Камеры {camera_id} не существует."
                 rules["cameras"][str(camera_id)]["rules"][str(label)]["threshold"] = threshold
-            async with aiofiles.open("app/rules/rules.json", "w") as f:
-                await f.write(json.dumps(rules))
+            async with aiofiles.open("app/rules/rules.json", "w", encoding="utf-8-sig") as f:
+                await f.write(json.dumps(rules, ensure_ascii=False, indent=2))
         else:
             logger.error("Пришел неизестный лейбл, невозможно обновить.")
             raise ValueError(f"Неизвестный Лейбл {label}")

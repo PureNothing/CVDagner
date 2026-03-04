@@ -11,6 +11,7 @@ async def orkestr_func(message: str):
         if isinstance (so, SO):
             async with aiohttp.ClientSession() as session:
                 so = so.model_dump()
+                logger.debug(f"Извлечённые факты: camera_id={so['camera_id']}, label={so['label']}, threshold={so['count']}")
                 async with session.post(url=UPDATE_ALERTS_URL, json={"camera_id": so["camera_id"], "label": so["label"], "threshold": so["count"]}) as response:
                     result = await response.json()
                     if response.status == 400:

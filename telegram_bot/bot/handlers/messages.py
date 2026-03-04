@@ -85,17 +85,9 @@ async def new_camera(message: Message, state: FSMContext):
 
 
 
-@router.message() #Реагируем на все сообщения, пустые скобки.
-async def message(message: Message):
-    text = message.text
-    if text == "О как":
-        async with aiohttp.ClientSession() as conn:
-            async with conn.get("https://avatars.mds.yandex.net/i?id=84b2a0e7f8dec69aac4475c5d2c78e97_l-5544703-images-thumbs&n=13") as response:
-                photo = await response.read()
-                await message.answer_photo(BufferedInputFile(file=photo, filename="molitva.jpg"), caption="Читать вслух ")
-    elif text == "хайп":
-        await message.answer_photo(photo="https://sun9-74.userapi.com/impf/OTkiwUdjRMxqEf8KDUP_S7L9SvwnOriyCutB1A/gBso05pegBY.jpg?size=1920x768&quality=95&crop=0,0,1920,767&sign=b9f1774c7cda184a3d459a855ad19815&type=cover_group", caption="Хайпим")
-    elif text == "файл":
-        await message.answer_document(FSInputFile("Адрес файла PDF"), caption="Держи файл!")
-    else:
-        await message.answer("Чел.... Лучше молчи...")
+@router.message()
+async def unknown_message(message: Message):
+    await message.answer(
+        "⚠️ Неизвестная команда.\n"
+        "Используйте кнопки меню или /start для начала работы."
+    )

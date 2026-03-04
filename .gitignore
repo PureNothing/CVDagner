@@ -21,3 +21,4 @@ wheels/
 *.jpg
 *.txt 
 *.onnx
+celerybeat-schedule*

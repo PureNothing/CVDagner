@@ -13,22 +13,22 @@ def format_answer(response, response_coordinates, response_place):
 
         text = (
             f"🚨 {camera_id_report}\n"
-            f"📍 Координаты:"
-            f"{response_coordinates}"
-            f"🏔️ Местность:"
-            f"{response_place}\n"
+            f"📍 Координаты:\n"
+            f"{response_coordinates}\n\n"
+            f"🏔️ Местность:\n"
+            f"{response_place}\n\n"
             f"🕐 Последнее обнаружение: {last_detection_time}\n"
             f"📊 Обнаруженные объекты:\n"
-            f"{object_text}"
+            f"{object_text}\n"
             f"✅ {description}"
         )
     
     else:
         text = (
             f"✅ {camera_id_report}\n"
-            f"📍 Координаты:"
-            f"{response_coordinates}"
-            f"🏔️ Местность:"
+            f"📍 Координаты:\n"
+            f"{response_coordinates}\n\n"
+            f"🏔️ Местность:\n"
             f"{response_place}\n"
             f"{description}"
         )

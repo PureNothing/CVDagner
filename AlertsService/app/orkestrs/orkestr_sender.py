@@ -1,10 +1,10 @@
 from app.funcs.get_rules import get_rules_func
 from collections import defaultdict
 from app.services.kafkaproducebot import kafka_send
-from app.services.kafkaconsume import DetetedObjects
 from app.funcs import get_coordinates, get_restrictions
 
-async def orkestr_func(detection_results: DetetedObjects, camera_id: int):
+async def orkestr_func(detection_results, camera_id: int):
+
     mesto = await get_restrictions.get_restrict_func(camera_id=camera_id)
     cords = await get_coordinates.get_coordinates_func(camera_id=camera_id)
     camera_rules = await get_rules_func(camera_id = camera_id)

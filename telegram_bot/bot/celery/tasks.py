@@ -45,7 +45,12 @@ def full_10_report_task(self):
         except Exception as e:
             logger.error(f"Не удалось отпавить 10 минутный отчет. {e}")
 
-    asyncio.run(async_logic())
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop=loop)
+    try:
+        loop.run_until_complete(async_logic())
+    finally:
+        loop.close()
 
 
 

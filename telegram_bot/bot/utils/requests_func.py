@@ -2,6 +2,7 @@ import asyncio
 from bot.core.config import GET_PLACE_URL, GET_COORDINATES_URL, GRAPHQL_URL
 from bot.queries.cameras import query_parse, full_general_report
 import aiohttp
+from bot.logger import logger
 
 async def get_info(camera_id: int):
     async with aiohttp.ClientSession() as session:
@@ -23,6 +24,7 @@ async def get_info(camera_id: int):
             coordinates_info(),
             place_info()
         )
+        logger.debug(f"place_info raw: {response_place}")
         return response_camera, response_coordinates, response_place
 
 
