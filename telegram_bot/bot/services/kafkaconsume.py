@@ -29,12 +29,12 @@ async def alert_messages(message: AlertMessage):
         await bot.send_message(
         chat_id=OWNER_ID,
         text=text,
-        protect_content=True
+        protect_content=False
         )
         await bot.send_message(
             chat_id=OWNER_ID,
             text=text,
-            protect_content=True
+            protect_content=False
         )
     except TelegramForbiddenError:
         logger.error("Пользователь заблокировал бота")

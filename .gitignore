@@ -10,8 +10,9 @@ wheels/
 .venv
 
 .env
-
+logs/
 **/.log
+*.log
 **/.jpg
 **/.csv
 **/.txt

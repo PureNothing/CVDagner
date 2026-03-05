@@ -5,9 +5,11 @@ from bot.parsers.full_report_parser import report_format_answer
 from bot.utils.requests_func import get_full_and_info_final
 from bot.core.config import AI_REPORT_PARSE
 import aiohttp
-from bot.core.config import bot
+from aiogram import Bot
+from bot.core.config import BOT_TOKEN
 from bot.core.config import BUDDY_ID, OWNER_ID
 from aiogram.exceptions import TelegramForbiddenError
+from telegramify_markdown import markdownify
 
 
 @app.task(
@@ -22,6 +24,7 @@ from aiogram.exceptions import TelegramForbiddenError
     reject_on_worker_lost=True
     )
 def full_10_report_task(self):
+    task_bot = Bot(token=BOT_TOKEN)
     async def async_logic():
         try:
             logger.debug("Пришло время получать каждй 10 минут отчет..")
@@ -31,19 +34,20 @@ def full_10_report_task(self):
                 async with session.post(url=AI_REPORT_PARSE, json={"report": parsed_report}) as response:
                     result = await response.json()
             logger.debug("Отчет получен от агента, отправляю пользователю..")
-            text = (
-                f"Пришел отчет агента:\n\n"
-                f"{result['report']}"
-            )
-            await bot.send_message(
+            converted_text = markdownify(result['report'])
+            await task_bot.send_message(
                 chat_id=OWNER_ID,
-                text=text,
-                protect_content=True
+                text=converted_text,
+                parse_mode="MarkdownV2",
+                protect_content=False
             )
+            logger.debug("Полный отчет отпрален в чат телеграм.")
         except TelegramForbiddenError:
             logger.error("Пользователь заблокировал бота не удалось отпавить отчет")
         except Exception as e:
             logger.error(f"Не удалось отпавить 10 минутный отчет. {e}")
+        finally:
+            await task_bot.close()
 
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop=loop)

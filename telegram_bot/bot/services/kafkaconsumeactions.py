@@ -16,12 +16,12 @@ async def agent_action(message: MSG):
         await bot.send_message(
         chat_id=OWNER_ID,
         text=text,
-        protect_content=True
+        protect_content=False
         )
         await bot.send_message(
             chat_id=OWNER_ID,
             text=text,
-            protect_content=True
+            protect_content=False
         )
         logger.debug("Действие агента отправлено пользователю.")
     except TelegramForbiddenError:
