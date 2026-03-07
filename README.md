@@ -622,27 +622,27 @@ flowchart TD
 
     BV -->|видео и фреймы в бакеты| MINIO[(MinIO)]
     BV -->|данные о видео и фреймах| PG[(PostgreSQL)]
-    BV -->|путь к фрейму| K_RTD{kafka\nready_to_detect}
+    BV -->|путь к фрейму| K_RTD{kafka ready_to_detect}
 
     K_RTD -->|фрейм достаётся из S3| DG[DetectGraphApi]
 
     DG <-->|фрейм / результаты детекции| BENTO[BentoML Service]
     DG -->|аннотированный фрейм в отдельный бакет| MINIO
     DG -->|фреймы и объекты в таблицы| PG
-    DG -->|обработан фрейм| K_FD{kafka\nframe_detected}
+    DG -->|обработан фрейм| K_FD{kafka frame_detected}
     K_FD -->|обновляет статус фрейма на Processed| BV
 
-    DG -->|номер камеры и что обнаружено| K_AT{kafka\nalerts_topic}
+    DG -->|номер камеры и что обнаружено| K_AT{kafka alerts_topic}
     K_AT --> AS[AlertsService]
     AS --- RJ[/rules.json\]
-    AS -->|превышен порог| K_RA{kafka\nreal_alerts}
+    AS -->|превышен порог| K_RA{kafka real_alerts}
 
     K_RA -->|алерт оформляется| TG[Telegram Bot]
     K_RA -->|детекции превысившие порог| AI[AIService]
 
     AI <-->|GraphQL запросы за данными| DG
     AI -->|запрашивает координаты и местность| AS
-    AI -->|дрон или авиаудар| K_AA{kafka\nagent_actions}
+    AI -->|дрон или авиаудар| K_AA{kafka agent_actions}
     K_AA -->|действие с координатами и местностью| TG
 
     AI -->|10 минутный отчёт| TG
