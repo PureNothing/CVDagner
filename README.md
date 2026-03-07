@@ -624,5 +624,3 @@ flowchart LR
     AI -->|дрон / авиаудар| K4[[Kafka\nagent_actions]]
     K4 --> TG[📱 Telegram Bot]
     TG -->|алерт + решение агента| OP
-```
-
