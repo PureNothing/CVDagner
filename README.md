@@ -654,3 +654,7 @@ flowchart TD
     CELERY[/Celery\] -->|каждые 10 мин — все детекции| DG
     CELERY -->|данные для отчёта| AI
 ```
+
+### Ссылка на более подробную Miro блок-схему:
+
+👉 **[Открыть блок-схему в Miro](https://miro.com/app/live-embed/uXjVG1B4dgk=/?embedMode=view_only_without_ui&moveToViewport=-1365%2C-1048%2C4707%2C1603&embedId=749216336408)** 👈
